@@ -6,7 +6,7 @@
 <body>
 
     <h2>New task</h2>
-    <form action="#" th:action="@{/schedule/new}" th:object="${task}" method="post">
+    <form action="#" method="post" th:action="@{/schedule/new}" th:object="${task}">
         Name: <br>
         <input type="text" name = "cat" th:field="*{name}" />
         <br><br>

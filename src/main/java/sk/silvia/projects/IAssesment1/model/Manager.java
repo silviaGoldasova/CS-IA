@@ -14,7 +14,7 @@ public class Manager {
         categoriesL.add("Household");
         categoriesL.add("Free time");
         categoriesL.add("Other");
-        numberOfCategories = 5;
+        numberOfCategories = categoriesL.size();
     }
 
 }

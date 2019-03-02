@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sk.silvia.projects.IAssesment1.model.Task;
+import sk.silvia.projects.IAssesment1.model.TaskFormDataDTO;
 import sk.silvia.projects.IAssesment1.model.User;
 import sk.silvia.projects.IAssesment1.model.Manager;
 
@@ -27,10 +28,15 @@ public class TaskController {
         }
 
         @PostMapping("/schedule/new")
-        public String createTask(@ModelAttribute Task task) {
-            if (task.getTaskCategory() == null) {
+        public String createTask(@ModelAttribute TaskFormDataDTO taskFormDataDTO) {
+            Task task = new Task();
+            task.setDuration(taskFormDataDTO.getDuration());
+            if (taskFormDataDTO.getTaskCategory() == null) {
                 task.setTaskCategory("Other");
+            } else {
+                task.setTaskCategory(taskFormDataDTO.getTaskCategory());
             }
+            task.setName(taskFormDataDTO.getName());
             taskRepository.save(task);
             return "/schedule";        // return homepage with task lists        // change to return "schedule"
         }
