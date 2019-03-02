@@ -1,0 +1,119 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+    <div th:replace="header :: header">
+    </div>
+
+    <!-- Full Page Intro -->
+    <div class="view" style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-4 white-text text-center">
+                        <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Welcome to Algi!</strong></h1>
+                        <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
+                        <h5 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>Task manager</strong></h5>
+                        <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s"><strong>What is Algi</strong></a>
+                        <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s"><strong>How to use Algi</strong></a>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Content -->
+        </div>
+        <!-- Mask & flexbox options-->
+    </div>
+    <!-- Full Page Intro -->
+
+    <!-- Main navigation -->
+
+
+    <!--Main Layout-->
+    <main>
+        <div class="container">
+            <!--Grid row-->
+            <div class="row py-5">
+                <!--Grid column-->
+                <div class="col-md-12 text-center">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+    </main>
+    <!--Main Layout-->
+
+
+    <style>
+
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 100vh;
+            }
+        }
+
+        .top-nav-collapse {
+            background-color: #f2f1dd !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: transparent;
+            /*background-color: #f2f1dd !important;   f9e5bc  */
+        }
+
+        @media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #f2f1dd !important;
+            }
+        }
+
+        h1 {
+            letter-spacing: 8px;
+        }
+
+        h5 {
+            letter-spacing: 3px;
+        }
+
+        .hr-light {
+            border-top: 3px solid #fff;
+            width: 80px;
+        }
+
+    </style>
+
+
+    <script>
+        // Animations init
+        new wow().init();
+    </script>
+
+</body>
+</html>

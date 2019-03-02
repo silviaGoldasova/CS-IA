@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+
+    <h2>New task</h2>
+    <form action="#" th:action="@{/schedule/new}" th:object="${task}" method="post">
+        Name: <br>
+        <input type="text" name = "cat" th:field="*{name}" />
+        <br><br>
+        Duration: <br>
+        <input type="text" name = "cat" th:field="*{duration}" />
+        <br><br>
+        Task category: <br>
+        <input type="radio" name = "cat" value="School" th:field="*{taskCategory}" />School<br>
+        <input type="radio" name = "cat" value="Work" th:field="*{taskCategory}" />Work<br>
+        <input type="radio" name = "cat" value="Household" th:field="*{taskCategory}" />Household<br>
+        <input type="radio" name = "cat" value="Free time" th:field="*{taskCategory}" />Free time<br>
+        <input type="radio" name = "cat" value="Other" th:field="*{taskCategory}" />Other<br>
+        <br><br>
+        <input type="submit" value="Submit" />
+    </form>
+
+</body>
+</html>
+
+<!--
+      <input type="text" th:field="*{taskCategory}" />
+ -->

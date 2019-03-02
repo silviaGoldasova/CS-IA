@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit task</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h2>Edit task</h2>
+
+    <form action="#" th:action="@{/schedule/1}" th:object="${task}" method="post">
+        <p th:text="'ID: ' + ${task.getId()}" > </p>
+        <p> <td th:text="'Name: '"></td> <input type="text" th:field="*{name}" />
+        <p> <td th:text="'Duration: '"></td> <input type="text" value = ${task.getDuration()} th:field="*{duration}" />
+        <p> <td th:text="'Task category: '"/> <br>
+            <input class = "indented" type="radio" value="School" th:field="*{taskCategory}" />School<br>
+            <input class = "indented" type="radio" value="Work" th:field="*{taskCategory}" />Work<br>
+            <input class = "indented" type="radio" value="Household" th:field="*{taskCategory}" />Household<br>
+            <input class = "indented" type="radio" value="Free time" th:field="*{taskCategory}" />Free time<br>
+            <input class = "indented" type="radio" value="Other" th:field="*{taskCategory}" />Other<br>
+        <br><br>
+        <input type="submit" value="Submit" />
+    </form>
+
+
+    <style>
+        .indented {
+            padding-left: 100pt;
+        }
+    </style>
+
+    <!--
+        <p th:text="'ID: ' + ${task.id}" />
+        <p th:text="'Name: ' + ${task.name}" />
+        <p th:text="'Duration: ' + ${task.getDuration()}" />
+     -->
+</body>
+</html>

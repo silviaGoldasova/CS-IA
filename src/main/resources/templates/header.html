@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div th:fragment="header">
+
+
+        <header>     <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="#"><strong>MDB</strong></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#"><strong>Home</strong><span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><strong>Link</strong></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><strong>Profile</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>    <!-- Navbar -->
+
+    </div>
+
+
+        <style>
+
+            html,
+            body,
+            header,
+            .view {
+                height: 100%;
+            }
+
+            @media (max-width: 740px) {
+                html,
+                body,
+                header,
+                .view {
+                    height: 100vh;
+                }
+            }
+
+            .top-nav-collapse {
+                background-color: #f2f1dd !important;
+            }
+
+            .navbar:not(.top-nav-collapse) {
+                background: transparent;
+                /*background-color: #f2f1dd !important;   f9e5bc  */
+            }
+
+            @media (max-width: 991px) {
+                .navbar:not(.top-nav-collapse) {
+                    background: #f2f1dd !important;
+                }
+            }
+
+            h1 {
+                letter-spacing: 8px;
+            }
+
+            h5 {
+                letter-spacing: 3px;
+            }
+
+            .hr-light {
+                border-top: 3px solid #fff;
+                width: 80px;
+            }
+
+        </style>
+
+
+        <script>
+            // Animations init
+            new WOW().init();
+        </script>
+
+</body>
+</html>
