@@ -8,6 +8,8 @@
     <title>My tasks</title>
 </head>
 <body>
+<div th:replace="header :: header">
+</div>
 
     <div class="largest_container">
         <h2>My tasks</h2>
@@ -26,7 +28,10 @@
                                     <div class = "indented" th:text="${task.duration}">- (duration)</div>
                                 </div>
                                 <div class="col-sm">
-                                    <button type="button" class="btn btn-dark completed">But1</button>
+                                    <form th:method="post" th:action="@{/schedule/{id}/delete(id=${task.id})}">
+                                        <button type="submit" name="submit" value="value" class="btn btn-dark completed"><i class="far fa-trash-alt"></i></button>
+                                    </form>
+                                    <button type="button" class="btn btn-dark completed"><i class="fas fa-check-square"></i>But1</button>
                                     <button type="button" class="btn btn-dark edit">But2</button>
                                     <button type="button" class="btn btn-dark delete">But3</button>
                                 </div>
