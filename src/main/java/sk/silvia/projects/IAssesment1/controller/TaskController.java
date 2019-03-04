@@ -18,6 +18,9 @@ public class TaskController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    CompletedTasksRepository completedTasksRepository;
+
     @GetMapping("/schedule/new")
     public String newTask(Model model) {
         model.addAttribute("task", new Task());
@@ -57,62 +60,6 @@ public class TaskController {
     @GetMapping("/schedule/{id}")
     public String editTask(@PathVariable("id") Long id, Model model) {
 
-        Task t1 = new Task();
-        t1.setId(1L);
-        t1.setName("CS IA");
-        t1.setDuration(70);
-        t1.setTaskCategory("School");
-        Task t2 = new Task();
-        t2.setId(35L);
-        t2.setName("IA");
-        t2.setDuration(60);
-        t2.setTaskCategory("Work");
-        Task t3 = new Task();
-        t3.setId(45L);
-        t3.setName("Internal Assess");
-        t3.setDuration(3);
-        t2.setTaskCategory("Free time");
-        Task t4 = new Task();
-        t4.setId(22L);
-        t4.setName("maths");
-        t4.setDuration(45);
-        t4.setTaskCategory("School");
-        Task t5 = new Task();
-        t5.setId(23L);
-        t5.setName("maths2");
-        t5.setDuration(60);
-        t5.setTaskCategory("Work");
-        Task t6 = new Task();
-        t6.setId(24L);
-        t6.setName("clean");
-        t6.setDuration(45);
-        t6.setTaskCategory("Household");
-        Task t7 = new Task();
-        t7.setId(25L);
-        t7.setName("maths");
-        t7.setDuration(90);
-        t7.setTaskCategory("School");
-        Task t8 = new Task();
-        t8.setId(26L);
-        t8.setName("maths2");
-        t8.setDuration(20);
-        t8.setTaskCategory("Work");
-        Task t9 = new Task();
-        t9.setId(27L);
-        t9.setName("Slovak");
-        t9.setDuration(30);
-        t9.setTaskCategory("Household");
-        taskRepository.save(t1);
-        taskRepository.save(t2);
-        taskRepository.save(t3);
-        taskRepository.save(t4);
-        taskRepository.save(t5);
-        taskRepository.save(t6);
-        taskRepository.save(t7);
-        taskRepository.save(t8);
-        taskRepository.save(t9);
-
-
         // load task from database - find task by id
         Task task = taskRepository.getOne(id);
 
@@ -126,65 +73,29 @@ public class TaskController {
 
     // napr: http://localhost:8080/schedule/25
     @GetMapping("/schedule/seed-data")
-    public String seedData(Model model) {
+    public String seedData() {
 
-        List<Task> taskList = new ArrayList<>();
-
-        taskList.add(new Task(); t1.setId(1L);
-        t1.setName("CS IA");
-        t1.setDuration(70);
-        t1.setTaskCategory("School");
-        taskList.add(new Task(); t2.setId(35L);
-        t2.setName("IA");
-        t2.setDuration(60);
-        t2.setTaskCategory("Work");
-        taskList.add(new Task(); t3.setId(45L);
-        t3.setName("Internal Assess");
-        t3.setDuration(3);
-        t2.setTaskCategory("Free time");
-        taskList.add(new Task(); t4.setId(22L);
-        t4.setName("maths");
-        t4.setDuration(45);
-        t4.setTaskCategory("School");
-        taskList.add(new Task(); t5.setId(23L);
-        t5.setName("maths2");
-        t5.setDuration(60);
-        t5.setTaskCategory("Work");
-        taskList.add(new Task(); t6.setId(24L);
-        t6.setName("clean");
-        t6.setDuration(45);
-        t6.setTaskCategory("Household");
-        taskList.add(new Task(); t7.setId(25L);
-        t7.setName("maths");
-        t7.setDuration(90);
-        t7.setTaskCategory("School");
-        taskList.add(new Task(); t8.setId(26L);
-        t8.setName("maths2");
-        t8.setDuration(20);
-        t8.setTaskCategory("Work");
-        taskList.add(new Task(); t9.setId(27L);
-        t9.setName("Slovak");
-        t9.setDuration(30);
-        t9.setTaskCategory("Household");
-        taskRepository.save(t1);
-        taskRepository.save(t2);
-        taskRepository.save(t3);
-        taskRepository.save(t4);
-        taskRepository.save(t5);
-        taskRepository.save(t6);
-        taskRepository.save(t7);
-        taskRepository.save(t8);
-        taskRepository.save(t9);
-
-
-        // load task from database - find task by id
-        Task task = taskRepository.getOne(id);
-
-        // fill form with task data
-        model.addAttribute("task", task);
+        for (int i = 0; i<16; i++) {
+            String taskcategory;
+            Task t = new Task();
+            t.setName("Learn");
+            t.setDuration(40);
+            switch(i%4) {
+                case 0: taskcategory = "School";
+                    break;
+                case 1: taskcategory = "Work";
+                    break;
+                case 2: taskcategory = "Housework";
+                    break;
+                default: taskcategory = "Other";
+                    break;
+            }
+            t.setTaskCategory(taskcategory);
+            taskRepository.save(t);
+        }
 
         // show form
-        return "edit_task";
+        return "schedule";
     }
 
     @PostMapping("/schedule/{id}")
@@ -230,13 +141,25 @@ public class TaskController {
         return taskRepository.findAll();
     }
 
-    @PostMapping("/schedule/{taskIdParameter}/delete")
-    public String deleteTask(@PathVariable String taskIdParameter) {
-        long taskId = Long.parseLong(taskIdParameter);
-        Task task = taskRepository.getOne(taskId);
-        taskRepository.delete(task);
-        return "redirect:/schedule";
+    @PostMapping(value = "/schedule/{taskIdParameter}/editing")
+    public String edittingTask(@PathVariable("taskIdParameter") Long id, @RequestParam(value = "action") String functionToPerform) {          //@PathVariable String taskIdParameter
+        switch(functionToPerform) {
+            case "edit":
+                return "redirect:/schedule/{taskIdParameter}";
+            case "delete":
+                Task task = taskRepository.getOne(id);
+                taskRepository.delete(task);
+                return "redirect:/schedule";
+            case "completed":
+                Task task1 = taskRepository.getOne(id);
+                CompletedTask completedTask = new CompletedTask(task1);
+                completedTasksRepository.save(completedTask);
+                taskRepository.delete(task1);
+                return "redirect:/schedule";
+            default:
+                return "redirect:/schedule";
+        }
     }
 
-
 }
+

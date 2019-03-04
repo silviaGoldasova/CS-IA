@@ -6,37 +6,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
 </head>
 <body>
 
-    <div th:replace="header :: header">
-    </div>
+    <div class = "homeHeader">
 
-    <!-- Full Page Intro -->
-    <div class="view" style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-light align-items-center">
-            <!-- Content -->
-            <div class="container">
-                <!--Grid row-->
-                <div class="row">
-                    <!--Grid column-->
-                    <div class="col-md-12 mb-4 white-text text-center">
-                        <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Welcome to Algi!</strong></h1>
-                        <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <h5 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>Task manager</strong></h5>
-                        <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s"><strong>What is Algi</strong></a>
-                        <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s"><strong>How to use Algi</strong></a>
+        <div th:replace="header :: header"> </div>
+
+        <!-- Full Page Intro -->
+        <div class="view" style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <!-- Mask & flexbox options-->
+            <div class="mask rgba-black-light align-items-center">
+                <!-- Content -->
+                <div class="container">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-md-12 mb-4 white-text text-center">
+                            <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-90"><strong>Welcome to Algi!</strong></h1>
+                            <hr class="hr-light my-4">
+                            <h5 class="text-uppercase mb-4 white-text"><strong>Task manager</strong></h5>
+                            <a class="btn btn-outline-white"><strong>What is Algi</strong></a>
+                            <a class="btn btn-outline-white"><strong>How to use Algi</strong></a>
+                        </div>
+                        <!--Grid column-->
                     </div>
-                    <!--Grid column-->
+                    <!--Grid row-->
                 </div>
-                <!--Grid row-->
+                <!-- Content -->
             </div>
-            <!-- Content -->
+            <!-- Mask & flexbox options-->
         </div>
-        <!-- Mask & flexbox options-->
+        <!-- Full Page Intro -->
+
     </div>
-    <!-- Full Page Intro -->
 
     <!-- Main navigation -->
 
@@ -60,60 +64,8 @@
     </main>
     <!--Main Layout-->
 
+    <div th:replace="footer :: footer"> </div>
 
-    <style>
-
-        html,
-        body,
-        header,
-        .view {
-            height: 100%;
-        }
-
-        @media (max-width: 740px) {
-            html,
-            body,
-            header,
-            .view {
-                height: 100vh;
-            }
-        }
-
-        .top-nav-collapse {
-            background-color: #f2f1dd !important;
-        }
-
-        .navbar:not(.top-nav-collapse) {
-            background: transparent;
-            /*background-color: #f2f1dd !important;   f9e5bc  */
-        }
-
-        @media (max-width: 991px) {
-            .navbar:not(.top-nav-collapse) {
-                background: #f2f1dd !important;
-            }
-        }
-
-        h1 {
-            letter-spacing: 8px;
-        }
-
-        h5 {
-            letter-spacing: 3px;
-        }
-
-        .hr-light {
-            border-top: 3px solid #fff;
-            width: 80px;
-        }
-
-    </style>
-
-
-    <script>
-        // Animations init
-        new wow().init();
-    </script>
 
 </body>
 </html>

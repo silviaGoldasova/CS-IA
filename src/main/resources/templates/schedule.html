@@ -4,75 +4,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
     <meta charset="UTF-8">
     <title>My tasks</title>
 </head>
 <body>
-<div th:replace="header :: header">
-</div>
 
-    <div class="largest_container">
-        <h2>My tasks</h2>
+    <div th:replace="header :: header"> </div>
 
-        <div class="max_container">
-            <div th:each="item : ${categs}">
-                <div th:text="${item}">- (category name) </div>
-                <table>
-                    <div th:each="task : ${taskList}">
-                        <div th:if="${task.taskCategory == item}">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class = "indented" th:text="${task.name}">- (task name)</div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class = "indented" th:text="${task.duration}">- (duration)</div>
-                                </div>
-                                <div class="col-sm">
-                                    <form th:method="post" th:action="@{/schedule/{id}/delete(id=${task.id})}">
-                                        <button type="submit" name="submit" value="value" class="btn btn-dark completed"><i class="far fa-trash-alt"></i></button>
-                                    </form>
-                                    <button type="button" class="btn btn-dark completed"><i class="fas fa-check-square"></i>But1</button>
-                                    <button type="button" class="btn btn-dark edit">But2</button>
-                                    <button type="button" class="btn btn-dark delete">But3</button>
+        <div class="largest_container">
+            <h2>My tasks</h2>
+
+            <div class="max_container">
+                <div th:each="item : ${categs}">
+                    <div th:text="${item}" class="categories" >- (category name) </div>
+                    <table>
+                        <div th:each="task : ${taskList}">
+                            <div th:if="${task.taskCategory == item}" class="tasks">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class = "indented" th:text="${task.name}">- (task name)</div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class = "indented" th:text="${task.duration}">- (duration)</div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <form th:method="post" th:action="@{/schedule/{id}/editing(id=${task.id})}">
+                                            <button type="submit" name="action" value="completed" class="btn btn-dark completed"><i class="fas fa-check-square buttons"></i></button>
+                                            <button type="submit" name="action" value="edit" class="btn btn-dark edit"><i class="fas fa-pencil-alt buttons"></i></button>
+                                            <button type="submit" name="action" value="delete" class="btn btn-dark"><i class="far fa-trash-alt buttons"></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                    </div>
-                </table>
+                    </table>
+                </div>
             </div>
+
         </div>
 
-    </div>
 
-
-    <style>
-        .indented {
-            padding-left: 50pt;
-        }
-
-        .largest_container{
-            margin: auto;
-            width: 85%;
-            border-width: 3px;
-            border-style: solid;
-            border-color: black;
-        }
-        .max_container{
-            margin: 50px auto auto auto;
-            width: 65%;
-            border-width: 3px;
-            border-style: solid;
-            border-color: black;
-        }
-        .completed{
-
-        }
-
-
-
-    </style>
-
+    <div th:replace="footer :: footer"> </div>
 
 
 </body>

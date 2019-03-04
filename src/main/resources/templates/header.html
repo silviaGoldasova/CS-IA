@@ -5,95 +5,110 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
 </head>
 <body>
 
     <div th:fragment="header">
 
-
-        <header>
+        <div>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
             <!--Navbar-->
-
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <nav class=" navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar mainBackground " style="background-color: #ffcc9d";>
                 <div class="container">
-                    <a class="navbar-brand" href="#"><strong>MDB</strong></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#"><strong>Home</strong><span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>Link</strong></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>Profile</strong></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Algi</strong></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/schedule/home"><strong>Home</strong><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/schedule"><strong>To do</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><strong>Get schedule</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><strong>Selected Tasks</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><strong>Completed</strong></a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
-        </header>    <!-- Navbar -->
-
-    </div>
+        </div>    <!-- Navbar -->
 
 
         <style>
+        /*
+        <a class="navbar-brand" href="#"><strong>MDB</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        */
 
+        .mainBackground {
+        background-color: #f8f6d7;
+        }
+
+        .navbar2{
+            padding: 0;
+            margin: 0;
+
+        }
+
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+
+        @media (max-width: 740px) {
             html,
             body,
             header,
             .view {
-                height: 100%;
+                height: 100vh;
             }
+        }
 
-            @media (max-width: 740px) {
-                html,
-                body,
-                header,
-                .view {
-                    height: 100vh;
-                }
-            }
+        .top-nav-collapse {
+            background-color: #78909c !important;
+        }
 
-            .top-nav-collapse {
-                background-color: #f2f1dd !important;
-            }
+        .navbar:not(.top-nav-collapse) {
+            background: transparent !important;
+        }
 
+        @media (max-width: 991px) {
             .navbar:not(.top-nav-collapse) {
-                background: transparent;
-                /*background-color: #f2f1dd !important;   f9e5bc  */
+                background: #78909c !important;
             }
+        }
 
-            @media (max-width: 991px) {
-                .navbar:not(.top-nav-collapse) {
-                    background: #f2f1dd !important;
-                }
-            }
+        h1 {
+            letter-spacing: 8px;
+        }
 
-            h1 {
-                letter-spacing: 8px;
-            }
+        h5 {
+            letter-spacing: 3px;
+        }
 
-            h5 {
-                letter-spacing: 3px;
-            }
-
-            .hr-light {
-                border-top: 3px solid #fff;
-                width: 80px;
-            }
+        .hr-light {
+            border-top: 3px solid #fff;
+            width: 80px;
+        }
 
         </style>
 
 
-        <script>
-            // Animations init
-            new WOW().init();
-        </script>
+    </div>
+
 
 </body>
 </html>
