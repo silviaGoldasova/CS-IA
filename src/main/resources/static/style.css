@@ -23,6 +23,18 @@
     margin-bottom: 20px;
 }
 
+h6{
+    font-size: 20px;
+    text-decoration-color: #2ecc71;
+}
+
+.gt2{
+    font-size: 20px;
+    text-decoration-color: #2ecc71;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
 .tasks{
     margin-top: 20px;
 }
@@ -34,18 +46,10 @@
 
 
 
-
-
-.mainBackground {
-    background-color: #f8f6d7;
-}
-
-
-
 html,
 body,
 header,
-.homeHeader,
+.homeHeader
 .view {
     height: 100%;
 }
@@ -64,9 +68,10 @@ header,
     background-color: #78909c !important;
 }
 
+/*
 .navbar:not(.top-nav-collapse) {
     background: transparent !important;
-}
+}*/
 
 @media (max-width: 991px) {
     .navbar:not(.top-nav-collapse) {
@@ -78,9 +83,6 @@ h1 {
     letter-spacing: 8px;
 }
 
-h5 {
-    letter-spacing: 3px;
-}
 
 .hr-light {
     border-top: 3px solid #fff;

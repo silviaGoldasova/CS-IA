@@ -1,22 +1,22 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
     <meta charset="UTF-8">
     <title>Title</title>
-    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
 </head>
 <body>
 
     <div th:fragment="header">
 
         <div>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+            <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
             <!--Navbar-->
-            <nav class=" navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar mainBackground " style="background-color: #ffcc9d";>
+            <nav class=" navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar" style="background-color: #ffcc9d";>   <!-- or  ffd9b7 (middle) or ffe6d1 (lighter) or ffcc9d  (darker)-->
                 <div class="container">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
@@ -51,59 +51,31 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
         */
 
-        .mainBackground {
-        background-color: #f8f6d7;
-        }
-
-        .navbar2{
-            padding: 0;
-            margin: 0;
-
-        }
-
-        html,
-        body,
-        header,
-        .view {
+        html, body, header, .homeHeader {
             height: 100%;
         }
-
         @media (max-width: 740px) {
-            html,
-            body,
-            header,
-            .view {
+            html, body, header, .homeHeader {
                 height: 100vh;
             }
         }
-
         .top-nav-collapse {
-            background-color: #78909c !important;
+            background-color: #ffcc9d !important;
         }
-
-        .navbar:not(.top-nav-collapse) {
+        /*.navbar:not(.top-nav-collapse) {
             background: transparent !important;
-        }
-
+        }*/
         @media (max-width: 991px) {
             .navbar:not(.top-nav-collapse) {
-                background: #78909c !important;
+                background: #ffcc9d !important;
             }
         }
-
         h1 {
             letter-spacing: 8px;
         }
-
         h5 {
             letter-spacing: 3px;
         }
-
-        .hr-light {
-            border-top: 3px solid #fff;
-            width: 80px;
-        }
-
         </style>
 
 

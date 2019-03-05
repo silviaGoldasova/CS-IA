@@ -1,25 +1,35 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link th:href="@{https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css}" rel="stylesheet">
+    <script th:src="@{https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js}"></script>
+
     <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+    <link th:href="@{bootstrap.css}" href="../static/css_bootstrap/bootstrap.css" rel="stylesheet" type="text/css"  />
+    <link th:href="@{bootstrap-grid.css}" href="../static/css_bootstrap/bootstrap-grid.css" rel="stylesheet" type="text/css"  />
 </head>
 <body>
 
-    <div class = "homeHeader">
+    <div class = homeHeader>
 
         <div th:replace="header :: header"> </div>
 
         <!-- Full Page Intro -->
-        <div class="view" style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="view" style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; height: 100%">
             <!-- Mask & flexbox options-->
             <div class="mask rgba-black-light align-items-center">
                 <!-- Content -->
-                <div class="container">
+                <div class="container" style="position: relative; top: 100px;">     <!-- style="border-color: black; border-width: 3px; border: solid;" ->>
                     <!--Grid row-->
                     <div class="row">
                         <!--Grid column-->
@@ -27,8 +37,8 @@
                             <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-90"><strong>Welcome to Algi!</strong></h1>
                             <hr class="hr-light my-4">
                             <h5 class="text-uppercase mb-4 white-text"><strong>Task manager</strong></h5>
-                            <a class="btn btn-outline-white"><strong>What is Algi</strong></a>
-                            <a class="btn btn-outline-white"><strong>How to use Algi</strong></a>
+                            <a href="#whatIsAlgi" class="btn btn-outline-white h5 mr-5 mt-2" style="letter-spacing: 2px"><strong>What is Algi</strong></a>
+                            <a href="#howToAlgi" class="btn btn-outline-white h5 ml-5 mt-2" style="letter-spacing: 2px"><strong>How to use Algi</strong></a>
                         </div>
                         <!--Grid column-->
                     </div>
@@ -46,8 +56,34 @@
 
 
     <!--Main Layout-->
-    <main>
-        <div class="container">
+    <main class = "backgroundImageLight">
+        <div style="opacity: 1; border-color: black; border-width: 3px; border: solid;">
+            <div class = "row" style="border-color: black; border-width: 3px; border: solid;">
+                <div id="whatIsAlgi" class = "col text-center aboutInfo">
+                    <p class = "centerVerHor">Algi is a scheduler.</p>
+                </div>
+                <div id="howToAlgi" class = "col text-center aboutInfo">
+                    <div  class = "d-flex flex-column centerVerHor">
+                        <div class="p-2">
+                            How to work with Algi
+                        </div>
+                        <div class="p-2">
+                            <p>
+                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Link with href
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="border-color: black; border-width: 3px; border: solid;">
             <!--Grid row-->
             <div class="row py-5">
                 <!--Grid column-->
@@ -66,6 +102,82 @@
 
     <div th:replace="footer :: footer"> </div>
 
+
+    <style>
+        html,
+        body,
+        header,
+        .homeHeader
+        .view {
+            height: 100%;
+        }
+
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .homeHeader,
+            .view {
+                height: 100vh;
+            }
+        }
+
+        .opacityImg{
+            opacity: 0.5;
+        }
+
+        .backgroundImageLight{
+            background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg');
+            opacity: 0.5;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .aboutInfo{
+            position: relative;
+            height: 200px;
+        }
+
+        .centerVerHor{
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .top-nav-collapse {
+            background-color: #78909c !important;
+        }
+
+        /*
+        .navbar:not(.top-nav-collapse) {
+            background: transparent !important;
+        }*/
+
+        @media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #78909c !important;
+            }
+        }
+
+        h1 {
+            letter-spacing: 8px;
+        }
+
+        h5 {
+            letter-spacing: 3px;
+        }
+        .hr-light {
+            border-top: 3px solid #fff;
+            width: 80px;
+        }
+
+    </style>
 
 </body>
 </html>

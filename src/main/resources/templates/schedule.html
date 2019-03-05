@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div th:replace="header :: header"> </div>
+    <div class= "homeHeader" th:replace="header :: header"> </div>
 
         <div class="largest_container">
             <h2>My tasks</h2>
@@ -46,6 +46,53 @@
 
 
     <div th:replace="footer :: footer"> </div>
+
+
+    <style>
+
+        .indented {
+            padding-left: 50pt;
+        }
+
+        .largest_container{
+            margin: auto;
+            width: 85%;
+            border-width: 3px;
+            border-style: solid;
+            border-color: black;
+        }
+        .max_container{
+            margin: 50px auto auto auto;
+            width: 65%;
+            border-width: 3px;
+            border-style: solid;
+            border-color: black;
+        }
+
+        .categories{
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        html,
+        body,
+        header,
+        .homeHeader
+        .view {
+            height: 100%;
+        }
+
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .homeHeader,
+            .view {
+                height: 100vh;
+            }
+        }
+
+    </style>
 
 
 </body>
