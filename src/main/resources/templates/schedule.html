@@ -7,26 +7,31 @@
     <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
     <meta charset="UTF-8">
     <title>My tasks</title>
-</head>
-<body>
 
-    <div class= "homeHeader" th:replace="header :: header"> </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+</head>
+<body style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center center; opacity: 40%">
+
+    <div th:replace="header :: header"> </div>
+
+    <div class="view">
 
         <div class="largest_container">
             <h2>My tasks</h2>
 
-            <div class="max_container">
-                <div th:each="item : ${categs}">
-                    <div th:text="${item}" class="categories" >- (category name) </div>
+            <div class="max_container taskFont">
+                <div class="taskFont" th:each="item : ${categs}">
+                    <div th:text="${item}" class="categories taskFont" >- (category name) </div>
                     <table>
-                        <div th:each="task : ${taskList}">
+                        <div class="taskFont" th:each="task : ${taskList}">
                             <div th:if="${task.taskCategory == item}" class="tasks">
                                 <div class="row">
                                     <div class="col-sm">
-                                        <div class = "indented" th:text="${task.name}">- (task name)</div>
+                                        <div class = "indented h5" th:text="${task.name}">- (task name)</div>
                                     </div>
                                     <div class="col-sm">
-                                        <div class = "indented" th:text="${task.duration}">- (duration)</div>
+                                        <div class = "indented h5" th:text="${task.duration}">- (duration)</div>
                                     </div>
                                     <div class="col-sm">
                                         <form th:method="post" th:action="@{/schedule/{id}/editing(id=${task.id})}">
@@ -44,56 +49,32 @@
 
         </div>
 
+    </div>
 
     <div th:replace="footer :: footer"> </div>
 
 
     <style>
-
-        .indented {
-            padding-left: 50pt;
-        }
-
         .largest_container{
-            margin: auto;
+            margin: 100px auto;
             width: 85%;
             border-width: 3px;
             border-style: solid;
             border-color: black;
         }
-        .max_container{
-            margin: 50px auto auto auto;
-            width: 65%;
-            border-width: 3px;
-            border-style: solid;
-            border-color: black;
+        .categoryFont{
+            font-size: larger;
         }
 
+        .tasksFont{
+            font-size: 5px;
+        }
         .categories{
             margin-top: 50px;
             margin-bottom: 20px;
         }
 
-        html,
-        body,
-        header,
-        .homeHeader
-        .view {
-            height: 100%;
-        }
-
-        @media (max-width: 740px) {
-            html,
-            body,
-            header,
-            .homeHeader,
-            .view {
-                height: 100vh;
-            }
-        }
-
     </style>
-
 
 </body>
 </html>

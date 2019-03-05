@@ -4,18 +4,18 @@
 }
 
 .largest_container{
-    margin: auto;
+    margin: 100px auto;
     width: 85%;
     border-width: 3px;
     border-style: solid;
     border-color: black;
 }
-.max_container{
-    margin: 50px auto auto auto;
-    width: 65%;
-    border-width: 3px;
-    border-style: solid;
-    border-color: black;
+.categoryFont{
+    font-size: larger;
+}
+
+.tasksFont{
+    font-size: 5px;
 }
 
 .categories{
@@ -23,16 +23,12 @@
     margin-bottom: 20px;
 }
 
-h6{
-    font-size: 20px;
-    text-decoration-color: #2ecc71;
-}
-
-.gt2{
-    font-size: 20px;
-    text-decoration-color: #2ecc71;
-    padding-left: 50px;
-    padding-right: 50px;
+.max_container{
+    margin: 50px auto auto auto;
+    width: 65%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
 }
 
 .tasks{
@@ -46,10 +42,18 @@ h6{
 
 
 
+
+
+.mainBackground {
+    background-color: #f8f6d7;
+}
+
+
+
 html,
 body,
 header,
-.homeHeader
+.homeHeader,
 .view {
     height: 100%;
 }
@@ -68,10 +72,9 @@ header,
     background-color: #78909c !important;
 }
 
-/*
 .navbar:not(.top-nav-collapse) {
     background: transparent !important;
-}*/
+}
 
 @media (max-width: 991px) {
     .navbar:not(.top-nav-collapse) {
@@ -83,6 +86,9 @@ h1 {
     letter-spacing: 8px;
 }
 
+h5 {
+    letter-spacing: 3px;
+}
 
 .hr-light {
     border-top: 3px solid #fff;
