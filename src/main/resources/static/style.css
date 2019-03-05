@@ -4,23 +4,31 @@
 }
 
 .largest_container{
-    margin: auto;
+    margin: 100px auto;
     width: 85%;
     border-width: 3px;
     border-style: solid;
     border-color: black;
 }
+.categoryFont{
+    font-size: larger;
+}
+
+.tasksFont{
+    font-size: 5px;
+}
+
+.categories{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
 .max_container{
     margin: 50px auto auto auto;
     width: 65%;
     border-width: 3px;
     border-style: solid;
     border-color: black;
-}
-
-.categories{
-    margin-top: 50px;
-    margin-bottom: 20px;
 }
 
 .tasks{
