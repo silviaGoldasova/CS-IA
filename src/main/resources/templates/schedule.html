@@ -11,20 +11,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
 </head>
-<body style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center center; opacity: 40%">
+<body style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center center; fill-opacity: 50%">
 
     <div th:replace="header :: header"> </div>
 
     <div class="view">
 
-        <div class="largest_container">
-            <h2>My tasks</h2>
+        <div class="largest_cont">
+            <h1>My tasks</h1>
 
-            <div class="max_container taskFont">
-                <div class="taskFont" th:each="item : ${categs}">
-                    <div th:text="${item}" class="categories taskFont" >- (category name) </div>
+            <div class="max_cont">
+                <div th:each="item : ${categs}">
+                    <h4 style="letter-spacing: 2px" th:text="${item}" class="categories" >- (category name) </h4>
                     <table>
-                        <div class="taskFont" th:each="task : ${taskList}">
+                        <div class="tasksFont" th:each="task : ${taskList}">
                             <div th:if="${task.taskCategory == item}" class="tasks">
                                 <div class="row">
                                     <div class="col-sm">
@@ -55,26 +55,35 @@
 
 
     <style>
-        .largest_container{
+        .largest_cont{
             margin: 100px auto;
-            width: 85%;
-            border-width: 3px;
-            border-style: solid;
-            border-color: black;
+            width: 75%;
         }
+
+        .max_cont{
+            margin: 50px auto auto auto;
+            width: 60%;
+        }
+
         .categoryFont{
             font-size: larger;
         }
 
         .tasksFont{
-            font-size: 5px;
+            font-size: 4px;
         }
         .categories{
-            margin-top: 50px;
-            margin-bottom: 20px;
+            margin-top: 60px;
+            margin-bottom: 25px;
         }
 
     </style>
+
+<!--
+            border-width: 3px;
+            border-style: solid;
+            border-color: red;
+            ->>
 
 </body>
 </html>
