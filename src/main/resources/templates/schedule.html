@@ -11,38 +11,48 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
 </head>
-<body style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center center; fill-opacity: 50%">
 
-    <div th:replace="header :: header"> </div>
+<body style="background-color: white">
+
+    <div class = homeHeader th:replace="header :: header"> </div>
 
     <div class="view">
 
         <div class="largest_cont">
-            <h1>My tasks</h1>
-
+            <h1 style="text-align: center" class="mx-auto" >My Tasks</h1>
             <div class="max_cont">
-                <div th:each="item : ${categs}">
-                    <h4 style="letter-spacing: 2px" th:text="${item}" class="categories" >- (category name) </h4>
-                    <table>
-                        <div class="tasksFont" th:each="task : ${taskList}">
-                            <div th:if="${task.taskCategory == item}" class="tasks">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <div class = "indented h5" th:text="${task.name}">- (task name)</div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div class = "indented h5" th:text="${task.duration}">- (duration)</div>
-                                    </div>
-                                    <div class="col-sm">
+                <div th:each="category : ${categs}">
+                    <h4 style="letter-spacing: 2px" th:text="${category}" class="categories" >- (category name) </h4>
+                    <table class="table table-borderless" style="margin-left: 20px; margin-right: 20px">
+                        <thread>
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Completed Edit Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <div class="tasksFont" th:each="task : ${taskList}">
+                                <tr>
+                                    <div th:if="${task.taskCategory == category}" class="tasks">
+                                        <td scope="row"></td>
+                                        <td th:text="${task.name}">- (task name) </td>
+                                        <td th:text="${task.duration}">- (duration) </td>
                                         <form th:method="post" th:action="@{/schedule/{id}/editing(id=${task.id})}">
-                                            <button type="submit" name="action" value="completed" class="btn btn-dark completed"><i class="fas fa-check-square buttons"></i></button>
-                                            <button type="submit" name="action" value="edit" class="btn btn-dark edit"><i class="fas fa-pencil-alt buttons"></i></button>
-                                            <button type="submit" name="action" value="delete" class="btn btn-dark"><i class="far fa-trash-alt buttons"></i></button>
+                                            <td class="d-flex flex-row bd-highlight mb-3 justify-content-center align-items-center">
+                                                <div class="p-2 bd-highlight"> <button type="submit" name="action" value="selected" class="btn btn-dark"><i class="buttons far " th:classappend="${task.selected} ? 'fa-check-circle' : 'fa-circle'"></i></button> </div>
+                                                <div class="p-2 bd-highlight"> <button type="submit" name="action" value="completed" class="btn btn-dark completed"><i class="fas fa-check-square buttons"></i></button> </div>
+                                                <div class="p-2 bd-highlight"> <button type="submit" name="action" value="edit" class="btn btn-dark edit"><i class="fas fa-pencil-alt buttons"></i></button> </div>
+                                                <div class="p-2 bd-highlight"> <button type="submit" name="action" value="delete" class="btn btn-dark"><i class="far fa-trash-alt buttons"></i></button> </div>
+                                            </td>
                                         </form>
                                     </div>
-                                </div>
+                                </tr>
                             </div>
-                        </div>
+                            </tbody>
+                        </thread>
                     </table>
                 </div>
             </div>
@@ -55,6 +65,28 @@
 
 
     <style>
+
+        table { counter-reset: rowNumber; }
+
+        table tr > td:first-child {
+            counter-increment: rowNumber; }
+
+        table tr td:first-child::before  {
+            content: counter(rowNumber);
+            min-width: 1em;
+            margin-right: 0.5em;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            font-size: 17px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
         .largest_cont{
             margin: 100px auto;
             width: 75%;
@@ -73,17 +105,32 @@
             font-size: 4px;
         }
         .categories{
-            margin-top: 60px;
-            margin-bottom: 25px;
+            margin-top: 70px;
+            margin-bottom: 30px;
+
+        }
+
+        .top-nav-collapse {
+            background-color: #ffcc9d !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: floralwhite !important;
+        }
+
+        @media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #ffcc9d !important;
+            }
         }
 
     </style>
 
-<!--
+            <!--
             border-width: 3px;
             border-style: solid;
             border-color: red;
-            ->>
+            -->
 
 </body>
 </html>

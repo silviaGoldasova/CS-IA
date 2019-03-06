@@ -44,17 +44,23 @@ header,
     }
 }
 
+@media (max-width: 991px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #78909c !important;
+    }
+}
+
 .top-nav-collapse {
-    background-color: #78909c !important;
+    background-color: #ffcc9d !important;
 }
 
 .navbar:not(.top-nav-collapse) {
-    background: transparent !important;
+    background: #ffcc9d !important;
 }
 
 @media (max-width: 991px) {
     .navbar:not(.top-nav-collapse) {
-        background: #78909c !important;
+        background: #ffcc9d !important;
     }
 }
 
