@@ -1,13 +1,82 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit task</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+    <meta charset="UTF-8">
+    <title>Edit tasks</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
 </head>
-<body style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center center; opacity: 40%">
+<body style="background-color: #fdfdfd">
 
-    <h2>Edit task</h2>
+    <div class = homeHeader th:replace="header :: header"> </div>
 
+    <div class="view">
+        <div class="largest_cont">
+            <h1 style="text-align: center" class="mx-auto" >Edit Task</h1>
+            <div class="max_cont">
+                <form action="#" th:action="@{/schedule/{id}(id=${task.id})}" th:object="${task}" method="post">
+                    <table class="table" style="margin-left: 20px; margin-right: 20px">
+                        <thread>
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Parameter</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td scope="row"></td>
+                                        <td>ID</td>
+                                        <td th:text="${task.id}"></td>
+                                    </tr>
+                                    <tr class="form-group">
+                                        <td scope="row"></td>
+                                        <td><label for = "enterName">Name</label></td>
+                                        <td class="d-flex flex-row justify-content-center align-content-center">
+                                            <div class = "p-2" style="width:60%">
+                                                <input th:type="text" th:field="*{name}" class="form-control" id="enterName"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="form-group">
+                                        <td scope="row"></td>
+                                        <td><label for = "enterDuration">Duration</label></td>
+                                        <td class="d-flex flex-row justify-content-center align-content-center">
+                                            <div class = "p-2" style="width:60%">
+                                                <input th:type="text" th:field="*{duration}" class="form-control"  value = ${task.getDuration()} id="enterDuration"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row"></td>
+                                        <td>Task Category</td>
+                                        <td>
+                                            <div class="d-flex flex-row justify-content-center align-content-center">
+                                                <div class = "p-2"><input id = "School" type="radio" value="School" th:field="*{taskCategory}" /><label for="School">School</label></div>
+                                                <div class = "p-2"><input id = "Work" type="radio" value="Work" th:field="*{taskCategory}" /><label for="School">Work</label></div>
+                                                <div class = "p-2"><input id = "Household" type="radio" value="Household" th:field="*{taskCategory}" /><label for="School">Household</label></div>
+                                                <div class = "p-2"><input id = "Free" type="radio" value="Free time" th:field="*{taskCategory}" /><label for="School">Free time</label></div>
+                                                <div class = "p-2"><input id = "Other" type="radio" value="Other" th:field="*{taskCategory}" /><label for="School">Other</label></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </thread>
+                    </table>
+                    <div class="d-flex justify-content-end"><input type="submit" class="btn btn-dark" value="Submit" /> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="footer :: footer"> </div>
+
+<!--
     <form action="#" th:action="@{/schedule/{id}(id=${task.id})}" th:object="${task}" method="post">
         <p th:text="'ID: ' + ${task.getId()}" > </p>
         <p> <td th:text="'Name: '"></td> <input type="text" th:field="*{name}" />
@@ -21,11 +90,43 @@
         <br><br>
         <input type="submit" value="Submit" />
     </form>
+-->
 
 
     <style>
         .indented {
             padding-left: 100pt;
+        }
+        table { counter-reset: rowNumber; }
+
+        table tr > td:first-child {
+            counter-increment: rowNumber; }
+
+        table tr td:first-child::before  {
+            content: counter(rowNumber);
+            min-width: 1em;
+            margin-right: 0.5em;
+        }
+        th {
+            text-align: center;
+        }
+        tr {
+            vertical-align: center;
+        }
+        td {
+            font-size: 17px;
+            letter-spacing: 2px;
+            text-align: center;
+            vertical-align: center;
+        }
+        .largest_cont{
+            margin: 100px auto;
+            width: 75%;
+        }
+
+        .max_cont{
+            margin: 50px auto auto auto;
+            width: 60%;
         }
     </style>
 

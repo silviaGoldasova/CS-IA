@@ -15,6 +15,21 @@ public class Task {
     private String name;
     private int duration;
     private String taskCategory;
+    private boolean selected;
+
+    public Task() {
+        this.name = "";
+        this.duration = 0;
+        this.taskCategory = "Other";
+        selected = false;
+    }
+
+    public Task(String name, int duration, String taskCategory, boolean select) {
+        this.name = name;
+        this.duration = duration;
+        this.taskCategory = taskCategory;
+        this.selected = selected;
+    }
 
     public String getTaskCategory() {
         return taskCategory;
@@ -44,9 +59,11 @@ public class Task {
         this.duration = duration;
     }
 
-    public Task() {
-        this.name = "";
-        this.duration = 0;
-        this.taskCategory = "Other";
+    public boolean isSelected() {
+        return selected;
     }
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
 }

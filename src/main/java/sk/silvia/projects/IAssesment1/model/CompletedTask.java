@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class CompletedTask{
@@ -15,17 +17,22 @@ public class CompletedTask{
     private String name;
     private int duration;
     private String taskCategory;
+    private LocalDate localDate = LocalDate.now();
+    private String localDateString;
+
 
     public CompletedTask() {
         this.name = "";
         this.duration = 0;
         this.taskCategory = "Other";
+        this.localDateString = "-";
     }
 
     public CompletedTask(Task task) {
         this.name = task.getName();
         this.duration = task.getDuration();
         this.taskCategory = task.getTaskCategory();
+        this.localDateString = "-";
     }
 
     public long getId() {
@@ -59,4 +66,27 @@ public class CompletedTask{
     public void setTaskCategory(String taskCategory) {
         this.taskCategory = taskCategory;
     }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public String getLocalDateString() {
+        return localDateString;
+    }
+
+    public void setLocalDateString(String localDateString) {
+        this.localDateString = localDateString;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
+    public void setTodayAsDate() {
+        localDate = LocalDate.now();
+        localDateString = localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+
 }

@@ -1,10 +1,125 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Selected tasks</title>
+
+    <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+
 </head>
-<body>
+<body style="background-color: #fdfdfd">
+
+    <div class = homeHeader th:replace="header :: header"> </div>
+
+    <div>
+        <div class="view">
+            <div class="largest_cont">
+                <h1 style="text-align: center" class="mx-auto" >Selected tasks</h1>
+                <div class="max_cont">
+                    <div th:each="category : ${categs}">
+                        <h4 style="letter-spacing: 2px" th:text="${category}" class="categories" >- (category name) </h4>
+                        <table class="table" style="margin-left: 20px; margin-right: 20px">
+                            <thread>
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Mark Completed / Deselect Task</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <div class="tasksFont" th:each="task : ${taskList}">
+                                    <tr>
+                                        <div th:if="${task.taskCategory == category}" class="tasks">
+                                            <td scope="row">.</td>
+                                            <td th:text="${task.name}">- (task name) </td>
+                                            <td th:text="${task.duration}">- (duration) </td>
+                                            <form th:method="post" th:action="@{/schedule/selected/{id}/(id=${task.id})}" modelAttribute="taskObject">
+                                                <td class="d-flex flex-row bd-highlight mb-3 justify-content-center align-items-center">
+                                                    <div class="p-2 bd-highlight"> <button type="submit" name="action" value="completed" class="btn btn-dark completed"><i class="fas fa-check-square buttons"></i></button> </div>
+                                                    <div class="p-2 bd-highlight"> <button type="submit" name="action" value="deselect" class="btn btn-dark"><i class="buttons far fa-check-circle"></i></button> </div>
+                                                </td>
+                                            </form>
+                                        </div>
+                                    </tr>
+                                </div>
+                                </tbody>
+                            </thread>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div th:replace="footer :: footer"> </div>
+
+
+    <style>
+        table { counter-reset: rowNumber; }
+
+        table tr > td:first-child {
+            counter-increment: rowNumber; }
+
+        table tr td:first-child::before  {
+            content: counter(rowNumber);
+            min-width: 1em;
+            margin-right: 0.5em;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            font-size: 17px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .largest_cont{
+            margin: 100px auto;
+            width: 75%;
+        }
+
+        .max_cont{
+            margin: 50px auto auto auto;
+            width: 60%;
+        }
+
+        .categoryFont{
+            font-size: larger;
+        }
+
+        .tasksFont{
+            font-size: 4px;
+        }
+        .categories{
+            margin-top: 70px;
+            margin-bottom: 30px;
+        }
+
+        .top-nav-collapse {
+            background-color: #ffcc9d !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: floralwhite !important;
+        }
+
+        @media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #ffcc9d !important;
+            }
+        }
+    </style>
+
 
 </body>
 </html>

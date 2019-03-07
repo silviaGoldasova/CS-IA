@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Completed tasks</title>
@@ -16,43 +16,41 @@
 <body style="background-color: #fdfdfd">
 
     <div class = homeHeader th:replace="header :: header"> </div>
-    <div>
-        <div class="view">
-            <div class="largest_cont">
-                <h1 style="text-align: center" class="mx-auto" >Completed tasks</h1>
-                <div class="max_cont">
-                    <div th:each="category : ${categs}">
-                        <h4 style="letter-spacing: 2px" th:text="${category}" class="categories" >- (category name) </h4>
-                        <table class="table" style="margin-left: 20px; margin-right: 20px">
-                            <thread>
-                                <thead>
+    <div class="view">
+        <div class="largest_cont">
+            <h1 style="text-align: center" class="mx-auto" >Completed tasks</h1>
+            <div class="max_cont">
+                <div th:each="category : ${categs}">
+                    <h4 style="letter-spacing: 2px" th:text="${category}" class="categories" >- (category name) </h4>
+                    <table class="table" style="margin-left: 20px; margin-right: 20px">
+                        <thread>
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Date completed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <div class="tasksFont" th:each="task : ${listCompletedTasks}">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Duration</th>
-                                        <th scope="col">Date completed</th>
+                                        <div th:if="${task.taskCategory == category}" class="tasks">
+                                            <td scope="row">.</td>
+                                            <td th:text="${task.name}">- (task name) </td>
+                                            <td th:text="${task.duration}">- (duration) </td>
+                                            <td th:text="${task.localDateString}">- (date completed) </td>
+                                        </div>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <div class="tasksFont" th:each="task : ${listCompletedTasks}">
-                                        <tr>
-                                            <div th:if="${task.taskCategory == category}" class="tasks">
-                                                <td scope="row">.</td>
-                                                <td th:text="${task.name}">- (task name) </td>
-                                                <td th:text="${task.duration}">- (duration) </td>
-                                                <td th:text="${task.localDateString}">- (date completed) </td>
-                                            </div>
-                                        </tr>
-                                    </div>
-                                </tbody>
-                            </thread>
-                        </table>
-                    </div>
+                                </div>
+                            </tbody>
+                        </thread>
+                    </table>
                 </div>
             </div>
         </div>
-
     </div>
+    <div th:replace="footer :: footer"> </div>
 
 
     <style>

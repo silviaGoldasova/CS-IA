@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import sk.silvia.projects.IAssesment1.model.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -53,7 +54,7 @@ public class TaskController {
         List<String> categs = man.categoriesL;
         model.addAttribute("categs", categs);
 
-        return "/schedule";
+        return "schedule";
     }
 
     // napr: http://localhost:8080/schedule/25
@@ -69,7 +70,6 @@ public class TaskController {
         // show form
         return "edit_task";
     }
-
 
     // napr: http://localhost:8080/schedule/25
     @GetMapping("/schedule/seed-data")
@@ -95,7 +95,7 @@ public class TaskController {
         }
 
         // show form
-        return "schedule";
+        return "redirect:/schedule";
     }
 
     @PostMapping("/schedule/{id}")
@@ -105,7 +105,7 @@ public class TaskController {
         taskRepository.save(task);
 
         // show form
-        return "schedule";         //change to schedule
+        return "redirect:/schedule";         //change to schedule
     }
 
     @GetMapping("/schedule/login")
@@ -138,7 +138,25 @@ public class TaskController {
     @GetMapping("schedule/list")
     @ResponseBody
     public List<Task> getTaskList() {
-        return taskRepository.findAll();
+        List<Task> selectedTasksList = new LinkedList<>();
+        List<Task> allTasks = taskRepository.findAll();
+        for(int i = 0; i < allTasks.size(); i++) {
+            if (allTasks.get(i).isSelected() == true)
+                selectedTasksList.add(allTasks.get(i));
+        }
+        return selectedTasksList;
+    }
+
+    @GetMapping("/schedule/completed")
+    public String createSchedule(Model model) {
+        List<CompletedTask> completedTaskList = completedTasksRepository.findAll();
+        model.addAttribute("listCompletedTasks", completedTaskList);
+
+        Manager man = new Manager();
+        List<String> categs = man.categoriesL;
+        model.addAttribute("categs", categs);
+
+        return "completed";
     }
 
     @PostMapping(value = "/schedule/{taskIdParameter}/editing")
@@ -153,12 +171,60 @@ public class TaskController {
             case "completed":
                 Task task1 = taskRepository.getOne(id);
                 CompletedTask completedTask = new CompletedTask(task1);
+                completedTask.setTodayAsDate();
                 completedTasksRepository.save(completedTask);
                 taskRepository.delete(task1);
+                return "redirect:/schedule";
+            case "selected":
+                Task task2 = taskRepository.getOne(id);
+                task2.setSelected(true);
+                taskRepository.save(task2);
                 return "redirect:/schedule";
             default:
                 return "redirect:/schedule";
         }
+    }
+
+    @GetMapping("/schedule/selected")
+    public String loadSelected(Model model) {
+        List<Task> selectedTasksList = new LinkedList<>();
+        List<Task> allTasks = taskRepository.findAll();
+        for(int i = 0; i < allTasks.size(); i++) {
+            if (allTasks.get(i).isSelected() == true)
+                selectedTasksList.add(allTasks.get(i));
+        }
+        model.addAttribute("taskList", selectedTasksList);
+
+        Manager man = new Manager();
+        List<String> categs = man.categoriesL;
+        model.addAttribute("categs", categs);
+
+        return "selected";
+    }
+
+    @PostMapping("/schedule/selected/{taskIdParameter}")
+    public String changeSelected(@PathVariable("taskIdParameter") Long id, @RequestParam(value = "action") String functionToPerform) {
+        switch(functionToPerform) {
+            case "deselect":
+                Task task2 = taskRepository.getOne(id);
+                task2.setSelected(false);
+                taskRepository.save(task2);
+                return "redirect:/schedule/selected";
+            case "completed":
+                Task task1 = taskRepository.getOne(id);
+                CompletedTask completedTask = new CompletedTask(task1);
+                completedTask.setTodayAsDate();
+                completedTasksRepository.save(completedTask);
+                taskRepository.delete(task1);
+                return "redirect:/schedule/selected";
+            default:
+                return "redirect:/schedule/selected";
+        }
+    }
+
+    @GetMapping("/schedule/get_schedule")
+    public String getSchedule(Model model) {
+        return "generateSchedule";
     }
 
 }
