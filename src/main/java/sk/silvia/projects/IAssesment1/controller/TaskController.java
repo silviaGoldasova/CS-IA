@@ -222,8 +222,15 @@ public class TaskController {
         }
     }
 
-    @GetMapping("/schedule/get_schedule")
+    @GetMapping("/schedule/generate")
     public String getSchedule(Model model) {
+        model.addAttribute("scheduleObject", new ScheduleFormDTO());
+        return "generateSchedule";
+    }
+
+    @PostMapping("/schedule/generate")
+    public String generateSchedule(@ModelAttribute ScheduleFormDTO scheduleFormDTO) {
+
         return "generateSchedule";
     }
 
