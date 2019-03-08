@@ -230,6 +230,25 @@ public class TaskController {
 
     @PostMapping("/schedule/generate")
     public String generateSchedule(@ModelAttribute ScheduleFormDTO scheduleFormDTO) {
+        List<Task> selected = new LinkedList<>();
+        List<Task> allTasks = taskRepository.findAll();
+        List<Integer> durations = new LinkedList<>();
+        int durationsTotal = 0;
+        Task task = new Task();
+        ScheduleFormDTO schedule = scheduleFormDTO;
+        for(int i = 0; i < allTasks.size(); i++) {
+            if (allTasks.get(i).isSelected() == true) {
+                task = allTasks.get(i);
+                selected.add(task);
+                durations.add(task.getDuration());
+                durationsTotal += task.getDuration();
+            }
+        }
+        if(durationsTotal < schedule.getSessionLength() + (schedule.getSessionLength()/schedule.getBreakFrequency())*schedule.getBreakLength() ){
+        }
+        else {
+            
+        }
 
         return "generateSchedule";
     }
