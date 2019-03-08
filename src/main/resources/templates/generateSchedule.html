@@ -35,7 +35,7 @@
                                 <td><label for = "sessionDuration">Desired learning session duration</label></td>
                                 <td class="d-flex flex-row justify-content-center align-content-center">
                                     <div class = "p-2" style="width:60%">
-                                        <input th:type="text" th:field="*{sessionDuration}" class="form-control" id="sessionDuration"/>
+                                        <input th:type="text" th:field="*{sessionLength}" class="form-control" id="sessionDuration"/>
                                     </div>
                                 </td>
                             </tr>
@@ -44,7 +44,7 @@
                                 <td><label for = "breakDuration">Desired break length</label></td>
                                 <td class="d-flex flex-row justify-content-center align-content-center">
                                     <div class = "p-2" style="width:60%">
-                                        <input th:type="text" th:field="*{breakDuration}" class="form-control" id="breakDuration"/>
+                                        <input th:type="text" th:field="*{breakLength}" class="form-control" id="breakDuration"/>
                                     </div>
                                 </td>
                             </tr>
@@ -53,7 +53,8 @@
                                 <td><label for = "breakFreq">Frequency of breaks</label></td>
                                 <td class="d-flex flex-row justify-content-center align-content-center">
                                     <div class = "p-2" style="width:60%">
-                                        <input th:type="text" th:field="*{breakFrequency}" class="form-control" id="breakFreq"/>
+                                        <input th:type="text" th:field="*{breakFrequency}" class="form-control" id="breakFreq" aria-describedby="helpTag"/>
+                                        <small id="helpTag" class="form-text text-muted">every x minutes</small>
                                     </div>
                                 </td>
                             </tr>
@@ -65,7 +66,70 @@
             </div>
         </div>
     </div>
+
+
+
     <div th:replace="footer :: footer"> </div>
+
+   <style>
+       table { counter-reset: rowNumber; }
+
+       table tr > td:first-child {
+           counter-increment: rowNumber; }
+
+       table tr td:first-child::before  {
+           content: counter(rowNumber);
+           min-width: 1em;
+           margin-right: 0.5em;
+       }
+
+       th {
+           text-align: center;
+       }
+
+       td {
+           font-size: 17px;
+           letter-spacing: 2px;
+           text-align: center;
+       }
+
+       .largest_cont{
+           margin: 100px auto;
+           width: 75%;
+       }
+
+       .max_cont{
+           margin: 50px auto auto auto;
+           width: 60%;
+       }
+
+       .categoryFont{
+           font-size: larger;
+       }
+
+       .tasksFont{
+           font-size: 4px;
+       }
+       .categories{
+           margin-top: 70px;
+           margin-bottom: 30px;
+       }
+
+       .top-nav-collapse {
+           background-color: #ffcc9d !important;
+       }
+
+       .navbar:not(.top-nav-collapse) {
+           background: floralwhite !important;
+       }
+
+       @media (max-width: 991px) {
+           .navbar:not(.top-nav-collapse) {
+               background: #ffcc9d !important;
+           }
+       }
+   </style>
+
 
 </body>
 </html>

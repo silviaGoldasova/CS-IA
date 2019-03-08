@@ -247,7 +247,7 @@ public class TaskController {
         if(durationsTotal < schedule.getSessionLength() + (schedule.getSessionLength()/schedule.getBreakFrequency())*schedule.getBreakLength() ){
         }
         else {
-            
+
         }
 
         return "generateSchedule";
