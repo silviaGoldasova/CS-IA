@@ -19,7 +19,7 @@
         <div class="largest_cont">
             <h1 style="text-align: center" class="mx-auto" >Generate Schedule</h1>
             <div class="max_cont">
-                <form action="#" th:action="@{/schedule/generate}" th:object="${scheduleObject}" method="post">
+                <form action="#" th:action="@{/schedule/generate}" th:object="${scheduleFormDTO}" method="post">
                     <table class="table" style="margin-left: 20px; margin-right: 20px">
                         <thread>
                             <thead>
@@ -35,7 +35,8 @@
                                 <td><label for = "sessionDuration">Desired learning session duration</label></td>
                                 <td class="d-flex flex-row justify-content-center align-content-center">
                                     <div class = "p-2" style="width:60%">
-                                        <input th:type="text" th:field="*{sessionLength}" class="form-control" id="sessionDuration"/>
+                                        <input th:type="text" th:field="*{sessionLength}" class="form-control" id="sessionDuration" aria-describedby="explainTag"/>
+                                        <small id="explainTag" class="form-text text-muted">including breaks</small>
                                     </div>
                                 </td>
                             </tr>
@@ -58,11 +59,29 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr class="form-group">
+                                <td scope="row"></td>
+                                <td>Category of tasks</td>
+                                <td>
+                                    <div class="d-flex flex-row justify-content-center align-content-center">
+                                        <div class = "p-2"><input id = "School" type="radio" value="School" th:field="*{categorySelected}" /><label for="School">School</label></div>
+                                        <div class = "p-2"><input id = "Work" type="radio" value="Work" th:field="*{categorySelected}" /><label for="Work">Work</label></div>
+                                        <div class = "p-2"><input id = "Household" type="radio" value="Household" th:field="*{categorySelected}" /><label for="Household">Household</label></div>
+                                        <div class = "p-2"><input id = "Free" type="radio" value="Free time" th:field="*{categorySelected}" /><label for="Free">Free time</label></div>
+                                        <div class = "p-2"><input id = "Other" type="radio" value="Other" th:field="*{categorySelected}" /><label for="Other">Other</label></div>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </thread>
                     </table>
                     <div class="d-flex justify-content-end"><input type="submit" class="btn btn-dark" value="Submit" /> </div>
                 </form>
+                <div>
+                    <div th:each="item: ${displayList}">
+                        <div th:text="&{item}"> <div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

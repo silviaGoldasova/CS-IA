@@ -4,11 +4,13 @@ public class ScheduleFormDTO {
     private int sessionLength;
     private int breakLength;
     private int breakFrequency;
+    private String categorySelected;
 
     public ScheduleFormDTO() {
         sessionLength = 0;
         breakLength = 0;
         breakFrequency = 0;
+        categorySelected = "Other";
     }
 
     public int getSessionLength() {
@@ -30,6 +32,13 @@ public class ScheduleFormDTO {
     }
     public void setBreakFrequency(int breakFrequency) {
         this.breakFrequency = breakFrequency;
+    }
+
+    public String getCategorySelected() {
+        return categorySelected;
+    }
+    public void setCategorySelected(String categorySelected) {
+        this.categorySelected = categorySelected;
     }
 
 }

@@ -1,5 +1,7 @@
 package sk.silvia.projects.IAssesment1.model;
 
+import sun.awt.image.ImageWatched;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +18,14 @@ public class Task {
     private int duration;
     private String taskCategory;
     private boolean selected;
+    private boolean forUpload;
 
     public Task() {
         this.name = "";
         this.duration = 0;
         this.taskCategory = "Other";
         selected = false;
+        forUpload = false;
     }
 
     public Task(String name, int duration, String taskCategory, boolean select) {
@@ -34,6 +38,7 @@ public class Task {
     public String getTaskCategory() {
         return taskCategory;
     }
+
     public void setTaskCategory(String taskCategory) {
         this.taskCategory = taskCategory;
     }
@@ -41,6 +46,7 @@ public class Task {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -48,6 +54,7 @@ public class Task {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -55,6 +62,7 @@ public class Task {
     public int getDuration() {
         return duration;
     }
+
     public void setDuration(int duration) {
         this.duration = duration;
     }
@@ -62,8 +70,17 @@ public class Task {
     public boolean isSelected() {
         return selected;
     }
+
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public boolean isForUpload() {
+        return forUpload;
+    }
+
+    public void setForUpload(boolean forUpload) {
+        this.forUpload = forUpload;
     }
 
 }
