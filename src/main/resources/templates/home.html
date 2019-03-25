@@ -18,87 +18,118 @@
     <link th:href="@{bootstrap.css}" href="../static/css_bootstrap/bootstrap.css" rel="stylesheet" type="text/css"  />
     <link th:href="@{bootstrap-grid.css}" href="../static/css_bootstrap/bootstrap-grid.css" rel="stylesheet" type="text/css"  />
 </head>
+<!--
 <body style="background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center center; opacity: 40%">
+-->
+<body>
 
+    <div class = "backgroundImageLight">
 
-    <div class = homeHeader>
+        <div class = homeHeader>
+    
+            <div th:replace="header :: header"> </div>
 
-        <div th:replace="header :: header"> </div>
-
-        <!-- Full Page Intro -->
-        <div class="view">
-            <!-- Mask & flexbox options-->
-            <div class="mask rgba-black-light align-items-center">
-                <!-- Content -->
-                <div class="container" style="position: relative; top: 100px;">     <!-- style="border-color: black; border-width: 3px; border: solid;" ->>
-                    <!--Grid row-->
-                    <div class="row">
-                        <!--Grid column-->
-                        <div class="col-md-12 mb-4 white-text text-center">
-                            <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-90"><strong>Welcome to Algi!</strong></h1>
-                            <hr class="hr-light my-4">
-                            <h5 class="text-uppercase mb-4 white-text"><strong>Task manager</strong></h5>
-                            <a href="#whatIsAlgi" class="btn btn-outline-white h5 mr-5 mt-2" style="letter-spacing: 2px"><strong>What is Algi</strong></a>
-                            <a href="#howToAlgi" class="btn btn-outline-white h5 ml-5 mt-2" style="letter-spacing: 2px"><strong>How to use Algi</strong></a>
+            <!-- Full Page Intro -->
+            <div class="view">
+                <!-- Mask & flexbox options-->
+                <div class="mask rgba-black-light align-items-center">
+                    <!-- Content -->
+                    <div class="container" style="position: relative; top: 100px;">     <!-- style="border-color: black; border-width: 3px; border: solid;" ->>
+                        <!--Grid row-->
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col-md-12 mb-4 white-text text-center">
+                                <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-90"><strong>Welcome to Algi!</strong></h1>
+                                <hr class="hr-light my-4">
+                                <h5 class="text-uppercase mb-4 white-text"><strong>Task manager</strong></h5>
+                                <a href="#whatIsAlgi" class="btn btn-outline-white h5 mr-5 mt-2" style="letter-spacing: 2px"><strong>What is Algi</strong></a>
+                                <a href="#howToAlgi" class="btn btn-outline-white h5 ml-5 mt-2" style="letter-spacing: 2px"><strong>How to use Algi</strong></a>
+                            </div>
+                            <!--Grid column-->
                         </div>
-                        <!--Grid column-->
+                        <!--Grid row-->
                     </div>
-                    <!--Grid row-->
+                    <!-- Content -->
                 </div>
-                <!-- Content -->
+                <!-- Mask & flexbox options-->
             </div>
-            <!-- Mask & flexbox options-->
+            <!-- Full Page Intro -->
+
         </div>
-        <!-- Full Page Intro -->
 
-    </div>
+        <!-- Main navigation -->
 
-    <!-- Main navigation -->
-
-
-    <!--Main Layout-->
-    <main class = "backgroundImageLight">
-        <div style="border-color: black; border-width: 3px; border: solid;">
-            <div class = "row" style="border-color: black; border-width: 3px; border: solid;">
-                <div id="whatIsAlgi" class = "col text-center aboutInfo">
-                    <p class = "centerVerHor">Algi is a scheduler.</p>
+        <!--Main Layout-->
+        <main style="margin-bottom: 80px">
+            <div>
+                <div class = "row" id="whatIsAlgi" style="padding: 50px">
+                    <div style="display: block; margin:auto; padding: 80px 20px 20px 20px " class = "text-center aboutInfo">
+                        <h3> What is Algi </h3>
+                        <p>Algi is a scheduler used used for creating a to-do list, managing to do tasks and displaying selected tasks on a web page.</p>
+                    </div>
                 </div>
-                <div id="howToAlgi" class = "col text-center aboutInfo">
-                    <div  class = "d-flex flex-column centerVerHor">
-                        <div class="p-2">
-                            How to work with Algi
-                        </div>
-                        <div class="p-2">
-                            <p>
-                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    Link with href
-                                </a>
-                            </p>
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                </div>
+
+
+                <div class = "row" id="howToAlgi" style="padding: 10px 80px 100px 80px; margin-top: 80px">
+                    <div style="display: block; margin:auto" class = "text-left aboutInfo">
+                        <h3 class = "text-center"> How to use Algi </h3>
+
+                        <div style="padding-top: 50px; padding-bottom: 50px">
+                            <div class="p-2 text-center">
+                                <img src = "https://farm8.staticflickr.com/7894/40494769393_4916e71477_z.jpg">
+                            </div>
+                            <div class="p-2">
+                                Click on links in the header for fast navigation on the pages. <br>
                             </div>
                         </div>
+
+                        <div style="padding-top: 50px; padding-bottom: 50px">
+                            <div class="p-2 text-center">
+                                <img src = "https://farm8.staticflickr.com/7856/40494769233_650ee7b17f_z.jpg">
+                            </div>
+                            <div class="p-2">
+                                Click on the link "To do" in the header to manage tasks. <br>
+                                Tasks are divided into 5 categories: School, Work, Household, Free time and Other. <br>
+                                In the rightmost column, for each task there are following options available: <br>
+                                <ul>
+                                    <li>mark the task as selected: selected tasks are tasks that are the most urgent and should be done the soonest possible;</li>
+                                    <li>mark the task as completed: completed tasks are tasks that you have completed and want to delete from the do to list;</li>
+                                    <li>edit the task: edit the name, duration or category of the task;</li>
+                                    <li>delete the task: the task will be deleted.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 50px; padding-bottom: 50px">
+                            <div class="p-2 text-center">
+                                <img src = "https://farm8.staticflickr.com/7851/33584518718_ab8f3cb3b7_z.jpg">
+                            </div>
+                            <div class="p-2">
+                                Selected Tasks <br>
+                                Selected Tasks have two options available: <br>
+                                <ul>
+                                    <li>mark the task as completed - the task will be mark as completed and removed from the Selected tasks list;</li>
+                                    <li>deselect: deselect the task - the task will be removed from the Selected tasks list, but will remain in the to do list.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 50px; padding-bottom: 50px">
+                            <div class="p-2 text-center">
+                                <img src = "https://farm8.staticflickr.com/7893/33584518788_a54ece80ab_z.jpg">
+                            </div>
+                            <div class="p-2">
+                                Generate Schedule <br>
+                                Based on the Selected Task List and inputed parameters, a schedule will be generated. <br>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
-        </div>
-        <div class="container" style="border-color: black; border-width: 3px; border: solid;">
-            <!--Grid row-->
-            <div class="row py-5">
-                <!--Grid column-->
-                <div class="col-md-12 text-center">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                </div>
-                <!--Grid column-->
-            </div>
-            <!--Grid row-->
-        </div>
-    </main>
+        </main>
+    </div>
     <!--Main Layout-->
 
     <div th:replace="footer :: footer"> </div>
@@ -129,12 +160,19 @@
 
         .backgroundImageLight{
             background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center;
+            height: 100%;
+
+            /*background-image: url('https://wallpapercave.com/wp/j77l1TC.jpg');
             opacity: 0.5;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
             height: 100%;
-            z-index: -1;
+            z-index: -1;*/
         }
 
         .aboutInfo{

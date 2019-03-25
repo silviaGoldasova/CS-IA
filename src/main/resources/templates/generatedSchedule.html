@@ -1,0 +1,176 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+    <meta charset="UTF-8">
+    <title>Your Generated Schedule</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+</head>
+
+<body style="background-color: white">
+
+    <div class = homeHeader th:replace="header :: header"> </div>
+    <div class="view">
+        <div class="largest_cont">
+            <h1 style="text-align: center" class="mx-auto" >Your Generated Schedule</h1>
+            <div class="max_cont">
+                <table class="table" style="margin-left: 20px; margin-right: 20px">
+                    <thread>
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <div class="tasksFont" th:each="task : ${displayList}">
+                                <tr>
+                                    <td scope="row">.</td>
+                                    <td th:text="${task.name}">- (task name) </td>
+                                    <td th:text="${task.duration}">- (duration) </td>
+                                </tr>
+                            </div>
+                        </tbody>
+                    </thread>
+                </table>
+            </div>
+
+            <div style="border-top: 10px; height: 35px">
+            </div>
+
+            <form class = "d-flex flex-row bd-highlight mb-3 justify-content-between" style="width: 20%; margin: auto;" th:method="post" th:action="@{/schedule/generatedButtons}">
+                <div class="p-2 bd-highlight"> <button type="submit" name="action" value="decline" class="btn btn-dark completed .btn-md">decline</button> </div>
+                <div class="p-2 bd-highlight"> <button type="submit" name="action" value="accept" class="btn btn-dark .btn-md">accept</button> </div>
+            </form>
+
+
+            <div style="border-top: 30px; height: 100px">
+            </div>
+
+            <h2 style="text-align: center" class="mx-auto" >Your Generated Schedule: Detailed Version</h2>
+            <div class="max_cont">
+                <table class="table" style="margin-left: 20px; margin-right: 20px">
+                    <thread>
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div class="tasksFont" th:each="item : ${list}">
+                            <tr>
+                                <td scope="row">.</td>
+                                <td th:text="${item.name}">- (task name) </td>
+                                <td th:text="${item.duration}">- (duration) </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </thread>
+                </table>
+            </div>
+
+            <div style="border-top: 50px; height: 100px">
+            </div>
+
+            <h2 style="text-align: center" class="mx-auto" >Input Parameters and General Info about the Generated Schedule</h2>
+            <div class="max_cont">
+                <table class="table" style="margin-left: 20px; margin-right: 20px">
+                    <thread>
+                        <tbody>
+                            <tr>
+                                <td scope="row">.</td>
+                                <td>Desired learning session duration</td>
+                                <td th:text="${scheduleFormDTO.sessionLength}"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">.</td>
+                                <td>Desired break length</td>
+                                <td th:text="${scheduleFormDTO.breakLength}"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">.</td>
+                                <td>Frequency of breaks</td>
+                                <td th:text="${scheduleFormDTO.breakFrequency}"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">.</td>
+                                <td>Total duration</td>
+                                <td th:text="${totalDuration}"></td>
+                            </tr>
+                        </tbody>
+                    </thread>
+                </table>
+            </div>
+
+
+            <div th:replace="footer :: footer"> </div>
+
+            <style>
+                table { counter-reset: rowNumber; }
+
+                table tr > td:first-child {
+                    counter-increment: rowNumber; }
+
+                table tr td:first-child::before  {
+                    content: counter(rowNumber);
+                    min-width: 1em;
+                    margin-right: 0.5em;
+                }
+
+                th {
+                    text-align: center;
+                }
+
+                td {
+                    font-size: 17px;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+
+                .largest_cont{
+                    margin: 100px auto;
+                    width: 75%;
+                }
+
+                .max_cont{
+                    margin: 50px auto auto auto;
+                    width: 60%;
+                }
+
+                .categoryFont{
+                    font-size: larger;
+                }
+
+                .tasksFont{
+                    font-size: 4px;
+                }
+                .categories{
+                    margin-top: 70px;
+                    margin-bottom: 30px;
+                }
+
+                .top-nav-collapse {
+                    background-color: #ffcc9d !important;
+                }
+
+                .navbar:not(.top-nav-collapse) {
+                    background: floralwhite !important;
+                }
+
+                @media (max-width: 991px) {
+                    .navbar:not(.top-nav-collapse) {
+                        background: #ffcc9d !important;
+                    }
+                }
+            </style>
+
+
+</body>
+</html>

@@ -19,7 +19,7 @@
         <div class="largest_cont">
             <h1 style="text-align: center" class="mx-auto" >Generate Schedule</h1>
             <div class="max_cont">
-                <form action="#" th:action="@{/schedule/generate}" th:object="${scheduleFormDTO}" method="post">
+                <form action="#" th:action="@{/schedule/generated}" th:object="${scheduleFormDTO}" method="post">
                     <table class="table" style="margin-left: 20px; margin-right: 20px">
                         <thread>
                             <thead>
@@ -77,11 +77,6 @@
                     </table>
                     <div class="d-flex justify-content-end"><input type="submit" class="btn btn-dark" value="Submit" /> </div>
                 </form>
-                <div>
-                    <div th:each="item: ${displayList}">
-                        <div th:text="&{item}"> <div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
