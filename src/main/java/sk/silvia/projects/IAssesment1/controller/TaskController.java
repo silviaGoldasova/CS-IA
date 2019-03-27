@@ -3,10 +3,17 @@ package sk.silvia.projects.IAssesment1.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import sk.silvia.projects.IAssesment1.dto.ScheduleFormDTO;
+import sk.silvia.projects.IAssesment1.dto.TaskFormDataDTO;
 import sk.silvia.projects.IAssesment1.model.*;
+import sk.silvia.projects.IAssesment1.model.entity.CompletedTask;
+import sk.silvia.projects.IAssesment1.model.entity.Task;
+import sk.silvia.projects.IAssesment1.service.ScheduleService;
+import sk.silvia.projects.IAssesment1.service.TaskService;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,13 +21,7 @@ import java.util.List;
 public class TaskController {
 
     @Autowired
-    TaskRepository taskRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CompletedTasksRepository completedTasksRepository;
+    private TaskService taskService;
 
     @GetMapping("/schedule/new")
     public String newTask(Model model) {
@@ -31,129 +32,36 @@ public class TaskController {
 
     @PostMapping("/schedule/new")
     public String createTask(@ModelAttribute TaskFormDataDTO taskFormDataDTO) {
-        Task task = new Task();
-        task.setDuration(taskFormDataDTO.getDuration());
-        if (taskFormDataDTO.getTaskCategory() == null) {
-            task.setTaskCategory("Other");
-        } else {
-            task.setTaskCategory(taskFormDataDTO.getTaskCategory());
-        }
-        task.setName(taskFormDataDTO.getName());
-        taskRepository.save(task);
+        taskService.createTask(taskFormDataDTO.getName(), taskFormDataDTO.getDuration(), taskFormDataDTO.getTaskCategory());
+
         return "/schedule";        // return homepage with task lists        // change to return "schedule"
-    }
-
-    @GetMapping("/schedule")
-    public String loadTasks(Model model) {
-        // load all tasks from database
-        List<Task> taskList = taskRepository.findAll();
-        // return homepage with tasks listed
-        model.addAttribute("taskList", taskList);
-
-        Manager man = new Manager();
-        List<String> categs = man.categoriesL;
-        model.addAttribute("categs", categs);
-
-        return "schedule";
     }
 
     // napr: http://localhost:8080/schedule/25
     @GetMapping("/schedule/{id}")
     public String editTask(@PathVariable("id") Long id, Model model) {
 
-        // load task from database - find task by id
-        Task task = taskRepository.getOne(id);
+        Task task = taskService.viewEditTask(id);
 
         // fill form with task data
         model.addAttribute("task", task);
 
-        // show form
         return "edit_task";
-    }
-
-    // napr: http://localhost:8080/schedule/25
-    @GetMapping("/schedule/seed-data")
-    public String seedData() {
-
-        for (int i = 0; i<16; i++) {
-            String taskcategory;
-            Task t = new Task();
-            t.setName("Learn");
-            t.setDuration(40);
-            switch(i%4) {
-                case 0: taskcategory = "School";
-                    break;
-                case 1: taskcategory = "Work";
-                    break;
-                case 2: taskcategory = "Housework";
-                    break;
-                default: taskcategory = "Other";
-                    break;
-            }
-            t.setTaskCategory(taskcategory);
-            taskRepository.save(t);
-        }
-
-        // show form
-        return "redirect:/schedule";
     }
 
     @PostMapping("/schedule/{id}")
     public String editTask(@ModelAttribute Task task) {
-
-        // fill form with task data
-        taskRepository.save(task);
-
-        // show form
-        return "redirect:/schedule";         //change to schedule
-    }
-
-    @GetMapping("/schedule/login")
-    public String viewHome() {
-        return "login";
-    }
-
-    @PostMapping("/schedule/login")
-    public String login(@ModelAttribute User user) {
-        userRepository.save(user);
-        return "login";
-    }
-
-    @GetMapping("/schedule/home")
-    public String viewHome1() {
-        return "home";
-    }
-
-    @GetMapping("/schedule/home1")
-    public String viewHome2() {
-        return "home1";
-    }
-
-    @GetMapping("/blank")
-    public String viewBlank() {
-        return "blank";
-    }
-
-    //get all data, one line
-    @GetMapping("schedule/list")
-    @ResponseBody
-    public List<Task> getTaskList() {
-        List<Task> selectedTasksList = new LinkedList<>();
-        List<Task> allTasks = taskRepository.findAll();
-        for(int i = 0; i < allTasks.size(); i++) {
-            if (allTasks.get(i).isSelected() == true)
-                selectedTasksList.add(allTasks.get(i));
-        }
-        return selectedTasksList;
+        taskService.saveEditTask(task);
+        return "redirect:/schedule";
     }
 
     @GetMapping("/schedule/completed")
-    public String createSchedule(Model model) {
-        List<CompletedTask> completedTaskList = completedTasksRepository.findAll();
+    public String displayCompleted(Model model) {
+
+        List<CompletedTask> completedTaskList = taskService.listCompleted();
         model.addAttribute("listCompletedTasks", completedTaskList);
 
-        Manager man = new Manager();
-        List<String> categs = man.categoriesL;
+        List<String> categs = new Manager().getCategoriesL();
         model.addAttribute("categs", categs);
 
         return "completed";
@@ -161,25 +69,11 @@ public class TaskController {
 
     @PostMapping(value = "/schedule/{taskIdParameter}/editing")
     public String edittingTask(@PathVariable("taskIdParameter") Long id, @RequestParam(value = "action") String functionToPerform) {          //@PathVariable String taskIdParameter
+        taskService.edittingTask(id, functionToPerform);
+
         switch(functionToPerform) {
             case "edit":
                 return "redirect:/schedule/{taskIdParameter}";
-            case "delete":
-                Task task = taskRepository.getOne(id);
-                taskRepository.delete(task);
-                return "redirect:/schedule";
-            case "completed":
-                Task task1 = taskRepository.getOne(id);
-                CompletedTask completedTask = new CompletedTask(task1);
-                completedTask.setTodayAsDate();
-                completedTasksRepository.save(completedTask);
-                taskRepository.delete(task1);
-                return "redirect:/schedule";
-            case "selected":
-                Task task2 = taskRepository.getOne(id);
-                task2.setSelected(true);
-                taskRepository.save(task2);
-                return "redirect:/schedule";
             default:
                 return "redirect:/schedule";
         }
@@ -187,16 +81,11 @@ public class TaskController {
 
     @GetMapping("/schedule/selected")
     public String loadSelected(Model model) {
-        List<Task> selectedTasksList = new LinkedList<>();
-        List<Task> allTasks = taskRepository.findAll();
-        for(int i = 0; i < allTasks.size(); i++) {
-            if (allTasks.get(i).isSelected() == true)
-                selectedTasksList.add(allTasks.get(i));
-        }
-        model.addAttribute("taskList", selectedTasksList);
 
-        Manager man = new Manager();
-        List<String> categs = man.categoriesL;
+        List<Task> selectedList = taskService.loadSelected();
+        model.addAttribute("taskList", selectedList);
+
+        List<String> categs = new Manager().getCategoriesL();
         model.addAttribute("categs", categs);
 
         return "selected";
@@ -204,28 +93,10 @@ public class TaskController {
 
     @PostMapping("/schedule/selected/{taskIdParameter}")
     public String changeSelected(@PathVariable("taskIdParameter") Long id, @RequestParam(value = "action") String functionToPerform) {
-        switch(functionToPerform) {
-            case "deselect":
-                Task task2 = taskRepository.getOne(id);
-                task2.setSelected(false);
-                taskRepository.save(task2);
-                return "redirect:/schedule/selected";
-            case "completed":
-                Task task1 = taskRepository.getOne(id);
-                CompletedTask completedTask = new CompletedTask(task1);
-                completedTask.setTodayAsDate();
-                completedTasksRepository.save(completedTask);
-                taskRepository.delete(task1);
-                return "redirect:/schedule/selected";
-            default:
-                return "redirect:/schedule/selected";
-        }
+        taskService.changeSelected(id, functionToPerform);
+        return "redirect:/schedule/selected";
     }
 
-    @GetMapping("/schedule/get_schedule")
-    public String getSchedule(Model model) {
-        return "generateSchedule";
-    }
 
 }
 

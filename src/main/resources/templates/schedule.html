@@ -23,7 +23,7 @@
             <div class="max_cont">
                 <div th:each="category : ${categs}">
                     <h4 style="letter-spacing: 2px" th:text="${category}" class="categories" >- (category name) </h4>
-                    <table class="table table-borderless" style="margin-left: 20px; margin-right: 20px">
+                    <table class="table" style="margin-left: 20px; margin-right: 20px">
                         <thread>
                             <thead>
                             <tr>
@@ -40,8 +40,8 @@
                                         <td scope="row"></td>
                                         <td th:text="${task.name}">- (task name) </td>
                                         <td th:text="${task.duration}">- (duration) </td>
-                                        <form th:method="post" th:action="@{/schedule/{id}/editing(id=${task.id})}">
-                                            <td class="d-flex flex-row bd-highlight mb-3 justify-content-center align-items-center">
+                                        <form class = "alignTable" th:method="post" th:action="@{/schedule/{id}/editing(id=${task.id})}">
+                                            <td class="d-flex flex-row bd-highlight mb-3 justify-content-center align-items-center alignTable">
                                                 <div class="p-2 bd-highlight"> <button type="submit" name="action" value="selected" class="btn btn-dark"><i class="buttons far " th:classappend="${task.selected} ? 'fa-check-circle' : 'fa-circle'"></i></button> </div>
                                                 <div class="p-2 bd-highlight"> <button type="submit" name="action" value="completed" class="btn btn-dark completed"><i class="fas fa-check-square buttons"></i></button> </div>
                                                 <div class="p-2 bd-highlight"> <button type="submit" name="action" value="edit" class="btn btn-dark edit"><i class="fas fa-pencil-alt buttons"></i></button> </div>
@@ -85,6 +85,14 @@
             font-size: 17px;
             letter-spacing: 2px;
             text-align: center;
+        }
+
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        .alignTable {
+            vertical-align: middle;
         }
 
         .largest_cont{

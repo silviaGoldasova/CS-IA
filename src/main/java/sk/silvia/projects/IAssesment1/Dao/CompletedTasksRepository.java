@@ -1,0 +1,7 @@
+package sk.silvia.projects.IAssesment1.Dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import sk.silvia.projects.IAssesment1.model.entity.CompletedTask;
+
+public interface CompletedTasksRepository extends JpaRepository<CompletedTask, Long> {
+}

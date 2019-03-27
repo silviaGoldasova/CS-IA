@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Manager {
-    public List<String> categoriesL = new ArrayList<>();
-    int numberOfCategories;
+    private List<String> categoriesL;
+    private int numberOfCategories;
 
     public Manager() {
         categoriesL = new ArrayList<>();
@@ -17,4 +17,11 @@ public class Manager {
         numberOfCategories = categoriesL.size();
     }
 
+    public List<String> getCategoriesL() {
+        return categoriesL;
+    }
+
+    public void setCategoriesL(List<String> categoriesL) {
+        this.categoriesL = categoriesL;
+    }
 }
