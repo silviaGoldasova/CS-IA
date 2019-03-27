@@ -40,6 +40,11 @@ public class ScheduleController {
         return "schedule";
     }
 
+    @GetMapping("/")
+    public String blank() {
+        return "home";
+    }
+
     @GetMapping("/schedule/home")
     public String viewHome() {
         return "home";

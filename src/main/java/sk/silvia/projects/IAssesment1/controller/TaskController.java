@@ -3,10 +3,7 @@ package sk.silvia.projects.IAssesment1.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import sk.silvia.projects.IAssesment1.dto.ScheduleFormDTO;
 import sk.silvia.projects.IAssesment1.dto.TaskFormDataDTO;
 import sk.silvia.projects.IAssesment1.model.*;
 import sk.silvia.projects.IAssesment1.model.entity.CompletedTask;
@@ -14,7 +11,6 @@ import sk.silvia.projects.IAssesment1.model.entity.Task;
 import sk.silvia.projects.IAssesment1.service.ScheduleService;
 import sk.silvia.projects.IAssesment1.service.TaskService;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Controller
