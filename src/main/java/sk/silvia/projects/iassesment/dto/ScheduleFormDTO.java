@@ -1,4 +1,4 @@
-package sk.silvia.projects.IAssesment1.dto;
+package sk.silvia.projects.iassesment.dto;
 
 public class ScheduleFormDTO {
     private int sessionLength;

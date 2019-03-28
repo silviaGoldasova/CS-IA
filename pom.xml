@@ -20,6 +20,8 @@
     <properties>
         <java.version>1.8</java.version>
         <!--<spring.version>3.0.6.RELEASE</spring.version>-->
+        <spring.version>5.1.4.RELEASE</spring.version>
+        <spring-starter.version>1.5.19.RELEASE</spring-starter.version>
     </properties>
 
 
@@ -27,17 +29,20 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-starter.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <version>${spring-starter.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${spring-starter.version}</version>
         </dependency>
 
         <dependency>
@@ -49,6 +54,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring-starter.version}</version>
         </dependency>
 
         <dependency>
@@ -76,23 +82,13 @@
 
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <!-- tag::security[] -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-starter.version}</version>
         </dependency>
         <!-- end::security[] -->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -109,6 +105,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-starter.version}</version>
         </dependency>
 
         <dependency>
@@ -122,6 +119,14 @@
             <artifactId>spring-security-core</artifactId>
             <version>5.1.4.RELEASE</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.12</version>
+        </dependency>
+
 
 
         <!-- Spring framework

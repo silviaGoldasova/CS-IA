@@ -1,4 +1,4 @@
-package sk.silvia.projects.IAssesment1.service;
+package sk.silvia.projects.iassesment.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

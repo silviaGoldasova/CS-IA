@@ -1,4 +1,4 @@
-package sk.silvia.projects.IAssesment1.model;
+package sk.silvia.projects.iassesment.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,4 @@
-package sk.silvia.projects.IAssesment1.model.entity;
-
-import sun.awt.image.ImageWatched;
+package sk.silvia.projects.iassesment.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

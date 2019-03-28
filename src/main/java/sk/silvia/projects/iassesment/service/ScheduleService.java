@@ -1,12 +1,11 @@
-package sk.silvia.projects.IAssesment1.service;
+package sk.silvia.projects.iassesment.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sk.silvia.projects.IAssesment1.Dao.TaskRepository;
-import sk.silvia.projects.IAssesment1.Dao.UploadedDataRepository;
-import sk.silvia.projects.IAssesment1.dto.UploadedDTO;
-import sk.silvia.projects.IAssesment1.model.entity.CompletedTask;
-import sk.silvia.projects.IAssesment1.model.entity.Task;
+import sk.silvia.projects.iassesment.dao.TaskRepository;
+import sk.silvia.projects.iassesment.dao.UploadedDataRepository;
+import sk.silvia.projects.iassesment.dto.UploadedDTO;
+import sk.silvia.projects.iassesment.entity.Task;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

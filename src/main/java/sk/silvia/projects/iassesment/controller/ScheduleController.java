@@ -1,4 +1,4 @@
-package sk.silvia.projects.IAssesment1.controller;
+package sk.silvia.projects.iassesment.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import sk.silvia.projects.IAssesment1.dto.ScheduleFormDTO;
-import sk.silvia.projects.IAssesment1.dto.UploadedDTO;
-import sk.silvia.projects.IAssesment1.model.Manager;
-import sk.silvia.projects.IAssesment1.model.entity.Task;
-import sk.silvia.projects.IAssesment1.service.ScheduleService;
-import sk.silvia.projects.IAssesment1.service.TaskService;
+import sk.silvia.projects.iassesment.dto.ScheduleFormDTO;
+import sk.silvia.projects.iassesment.dto.UploadedDTO;
+import sk.silvia.projects.iassesment.model.Manager;
+import sk.silvia.projects.iassesment.entity.Task;
+import sk.silvia.projects.iassesment.service.ScheduleService;
+import sk.silvia.projects.iassesment.service.TaskService;
 
 import java.util.LinkedList;
 import java.util.List;

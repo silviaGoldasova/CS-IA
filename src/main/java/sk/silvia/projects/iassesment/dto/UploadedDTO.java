@@ -1,13 +1,9 @@
-package sk.silvia.projects.IAssesment1.dto;
-
-import sk.silvia.projects.IAssesment1.model.entity.Task;
+package sk.silvia.projects.iassesment.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class UploadedDTO {

@@ -1,4 +1,4 @@
-package sk.silvia.projects.IAssesment1;
+package sk.silvia.projects.iassesment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
