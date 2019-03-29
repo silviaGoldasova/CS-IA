@@ -8,7 +8,7 @@ public class Manager {
     private int numberOfCategories;
 
     public Manager() {
-        categoriesL = new ArrayList<>();
+        categoriesL = new ArrayList<String>();
         categoriesL.add("School");
         categoriesL.add("Work");
         categoriesL.add("Household");

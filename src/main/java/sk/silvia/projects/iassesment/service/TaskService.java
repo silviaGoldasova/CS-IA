@@ -49,7 +49,7 @@ public class TaskService {
 
     // List<Task> filteredTasks = allTasks.stream().filter(task -> task.isSelected()).collect(Collectors.toList());
     public List<Task> getSelectedTaskList() {
-        List<Task> selectedTasksList = new LinkedList<>();
+        List<Task> selectedTasksList = new LinkedList<Task>();
         List<Task> allTasks = taskRepository.findAll();
         for(int i = 0; i < allTasks.size(); i++) {
             if (allTasks.get(i).isSelected() == true)

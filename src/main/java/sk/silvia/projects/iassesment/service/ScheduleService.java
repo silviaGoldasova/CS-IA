@@ -26,7 +26,7 @@ public class ScheduleService {
     public List<Task> generateSchedule(int sessionLength, int breakLength, int breakFrequency, String categorySelected) {
         List<Task> selected = taskService.getSelectedTaskList();
         List<Task> list = getCategoryTasks(categorySelected, selected);
-        List<Task> display = new LinkedList<>();
+        List<Task> display = new LinkedList<Task>();
         List<Integer> durations = new LinkedList<>();
 
         int durationsTotal = 0;
