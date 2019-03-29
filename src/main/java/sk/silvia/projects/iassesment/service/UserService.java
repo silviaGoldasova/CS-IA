@@ -4,7 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.silvia.projects.iassesment.dao.UserRepository;
-import sk.silvia.projects.iassesment.entity.User;
+import sk.silvia.projects.iassesment.entity.MyUser;
 
 @Service
 public class UserService {
@@ -15,7 +15,7 @@ public class UserService {
     public void registerUser(String username, String password){
         String cryptedPassword = DigestUtils.sha1Hex(password);
 
-        User user = new User();
+        MyUser user = new MyUser();
         user.setUsername(username);
         user.setPassword(cryptedPassword);
 
@@ -26,7 +26,7 @@ public class UserService {
     public boolean authentificateUser(String userName, String password){
         String cryptedPassword = DigestUtils.sha1Hex(password);
 
-        User user = userRepository.findUserByUsernameAndPassword(userName, cryptedPassword);
+        MyUser user = userRepository.findUserByUsernameAndPassword(userName, cryptedPassword);
 
         return !(user == null);
 

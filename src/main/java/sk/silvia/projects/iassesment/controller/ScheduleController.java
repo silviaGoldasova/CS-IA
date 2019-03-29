@@ -8,10 +8,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import sk.silvia.projects.iassesment.dto.ScheduleFormDTO;
 import sk.silvia.projects.iassesment.dto.UploadedDTO;
+import sk.silvia.projects.iassesment.entity.MyUser;
 import sk.silvia.projects.iassesment.model.Manager;
 import sk.silvia.projects.iassesment.entity.Task;
 import sk.silvia.projects.iassesment.service.ScheduleService;
 import sk.silvia.projects.iassesment.service.TaskService;
+import sk.silvia.projects.iassesment.service.UserService;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +26,9 @@ public class ScheduleController {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/schedule")
     public String loadTasks(Model model) {
@@ -38,6 +43,42 @@ public class ScheduleController {
         model.addAttribute("categs", categs);
 
         return "schedule";
+    }
+
+    @GetMapping("/home")
+    public String homeLoginView() {
+        return "homeLogin";
+    }
+
+    @GetMapping("/hello")
+    public String helloView() {
+        return "hello";
+    }
+
+    @GetMapping("/login")
+    public String loginView() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String logInPost(@ModelAttribute MyUser myUser) {
+        /*if (userService.authentificateUser(myUser.getUsername(), myUser.getPassword()))
+            return "home";
+        else
+            return "redirect:/login";*/
+        return "home";
+    }
+
+    @GetMapping("/signup")
+    public String signupView(Model model) {
+        model.addAttribute("user", new MyUser());
+        return "signup";
+    }
+
+    @PostMapping("/signup")
+    public String signupView(Model model, @ModelAttribute MyUser myUser) {
+        userService.registerUser(myUser.getUsername(), myUser.getPassword());
+        return "signup";
     }
 
     @GetMapping("/")

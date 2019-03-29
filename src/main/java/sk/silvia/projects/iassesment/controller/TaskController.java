@@ -28,8 +28,7 @@ public class TaskController {
     @PostMapping("/schedule/new")
     public String createTask(@ModelAttribute TaskFormDataDTO taskFormDataDTO) {
         taskService.createTask(taskFormDataDTO.getName(), taskFormDataDTO.getDuration(), taskFormDataDTO.getTaskCategory());
-
-        return "/schedule";        // return homepage with task lists        // change to return "schedule"
+        return "redirect:/schedule";
     }
 
     // napr: http://localhost:8080/schedule/25

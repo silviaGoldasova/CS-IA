@@ -1,27 +1,144 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" charset="UTF-8">
-    <title>Form</title>
-</head>
-<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <h2>New task</h2>
-    <form action="#" method="post" th:action="@{/schedule/new}" th:object="${task}">
-        Name: <br>
-        <input type="text" name = "cat" th:field="*{name}" />
-        <br><br>
-        Duration: <br>
-        <input type="text" name = "cat" th:field="*{duration}" />
-        <br><br>
-        Task category: <br>
-        <input type="radio" name = "cat" value="School" th:field="*{taskCategory}" />School<br>
-        <input type="radio" name = "cat" value="Work" th:field="*{taskCategory}" />Work<br>
-        <input type="radio" name = "cat" value="Household" th:field="*{taskCategory}" />Household<br>
-        <input type="radio" name = "cat" value="Free time" th:field="*{taskCategory}" />Free time<br>
-        <input type="radio" name = "cat" value="Other" th:field="*{taskCategory}" />Other<br>
-        <br><br>
-        <input type="submit" value="Submit" />
-    </form>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+    <meta charset="UTF-8">
+    <title>New task</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{style.css}" href="../static/style.css" rel="stylesheet" type="text/css"  />
+</head>
+
+<body style="background-color: white">
+
+    <div class = homeHeader th:replace="header :: header"> </div>
+
+    <div class="view">
+
+        <div class="largest_cont">
+            <h1 style="text-align: center" class="mx-auto" >Add New Task</h1>
+            <div class="max_cont">
+                <form action="#" method="post" th:action="@{/schedule/new}" th:object="${task}">
+                    <table class="table" style="margin-left: 20px; margin-right: 20px">
+                        <thread>
+                            <tbody>
+                            <tr class="form-group">
+                                <td scope="row"></td>
+                                <td><label for = "enterName">Name</label></td>
+                                <td class="d-flex flex-row justify-content-center align-content-center">
+                                    <div class = "p-2" style="width:60%">
+                                        <input th:type="text" name = "cat" th:field="*{name}" class="form-control" id="enterName"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="form-group">
+                                <td scope="row"></td>
+                                <td><label for = "enterDuration">Duration</label></td>
+                                <td class="d-flex flex-row justify-content-center align-content-center">
+                                    <div class = "p-2" style="width:60%">
+                                        <input th:type="text" name = "cat" th:field="*{duration}" class="form-control" id="enterDuration"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"></td>
+                                <td>Task Category</td>
+                                <td>
+                                    <div class="d-flex flex-row justify-content-center align-content-center">
+                                        <div class = "p-2"><input id = "School" type="radio" value="School" th:field="*{taskCategory}" /><label for="School">School</label></div>
+                                        <div class = "p-2"><input id = "Work" type="radio" value="Work" th:field="*{taskCategory}" /><label for="Work">Work</label></div>
+                                        <div class = "p-2"><input id = "Household" type="radio" value="Household" th:field="*{taskCategory}" /><label for="Household">Household</label></div>
+                                        <div class = "p-2"><input id = "Free" type="radio" value="Free time" th:field="*{taskCategory}" /><label for="Free">Free time</label></div>
+                                        <div class = "p-2"><input id = "Other" type="radio" value="Other" th:field="*{taskCategory}" /><label for="Other">Other</label></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </thread>
+                    </table>
+                    <div class="d-flex justify-content-end"><input type="submit" class="btn btn-dark" value="Submit" /> </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div th:replace="footer :: footer"> </div>
+
+
+    <style>
+
+        table { counter-reset: rowNumber; }
+
+        table tr > td:first-child {
+            counter-increment: rowNumber; }
+
+        table tr td:first-child::before  {
+            content: counter(rowNumber);
+            min-width: 1em;
+            margin-right: 0.5em;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            font-size: 17px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        .alignTable {
+            vertical-align: middle;
+        }
+
+        .largest_cont{
+            margin: 100px auto;
+            width: 75%;
+        }
+
+        .max_cont{
+            margin: 50px auto auto auto;
+            width: 60%;
+        }
+
+        .categoryFont{
+            font-size: larger;
+        }
+
+        .tasksFont{
+            font-size: 4px;
+        }
+        .categories{
+            margin-top: 70px;
+            margin-bottom: 30px;
+
+        }
+
+        .top-nav-collapse {
+            background-color: #ffcc9d !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: floralwhite !important;
+        }
+
+        @media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #ffcc9d !important;
+            }
+        }
+
+    </style>
 
 </body>
 </html>

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.silvia.projects.iassesment.dao.CompletedTasksRepository;
 import sk.silvia.projects.iassesment.dao.TaskRepository;
+import sk.silvia.projects.iassesment.dao.UserRepository;
 import sk.silvia.projects.iassesment.entity.CompletedTask;
+import sk.silvia.projects.iassesment.entity.MyUser;
 import sk.silvia.projects.iassesment.entity.Task;
 
 import java.util.LinkedList;
@@ -18,6 +20,12 @@ public class TaskService {
 
     @Autowired
     CompletedTasksRepository completedTasksRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     public List<Task> getAllTasks() {
         List<Task> taskList = taskRepository.findAll();
@@ -34,6 +42,9 @@ public class TaskService {
         }
         task.setName(name);
         taskRepository.save(task);
+
+        userService.registerUser("user", "password");
+
     }
 
     public Task viewEditTask(Long id) {
