@@ -4,7 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import sk.silvia.projects.iassesment.entity.MyUser;
 
 public interface UserRepository extends JpaRepository<MyUser, String> {
-    MyUser findUserByUsernameAndPassword(String userName, String password);
+    MyUser findUserByUsernameAndEncryptedPassword(String userName, String password);
+    MyUser findUserByUsername(String username);
 }
 
 

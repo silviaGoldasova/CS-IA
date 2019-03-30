@@ -1,6 +1,7 @@
 package sk.silvia.projects.iassesment.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import sk.silvia.projects.iassesment.dao.CompletedTasksRepository;
 import sk.silvia.projects.iassesment.dao.TaskRepository;
@@ -24,26 +25,31 @@ public class TaskService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    UserService userService;
-
     public List<Task> getAllTasks() {
         List<Task> taskList = taskRepository.findAll();
         return taskList;
     }
 
-    public void createTask(String name, int duration, String taskCategory ) {
+    public boolean createTask(String name, String duration, String taskCategory ) {
         Task task = new Task();
-        task.setDuration(duration);
-        if (taskCategory == null) {
-            task.setTaskCategory("Other");
-        } else {
-            task.setTaskCategory(taskCategory);
-        }
-        task.setName(name);
-        taskRepository.save(task);
 
-        userService.registerUser("user", "password");
+        System.out.println("before");
+
+        if (!(new Validation().validateInputInt(duration)))
+            return false;
+        else
+            task.setDuration(Integer.parseInt(duration));
+
+        if (taskCategory == null)
+            taskCategory = "Other";
+
+        System.out.println("after");
+
+        task.setName(name);
+        task.setTaskCategory(taskCategory);
+
+        taskRepository.save(task);
+        return true;
 
     }
 

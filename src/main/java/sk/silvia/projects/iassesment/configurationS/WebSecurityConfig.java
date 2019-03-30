@@ -1,5 +1,7 @@
 package sk.silvia.projects.iassesment.configurationS;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,15 +11,21 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import sk.silvia.projects.iassesment.dao.UserRepository;
+import sk.silvia.projects.iassesment.entity.MyUser;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/schedule/home", "/h2").permitAll()
+                .antMatchers("/*", "/schedule/home", "/schedule/*", "/h2", "/console/*", "/h2_console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -25,15 +33,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+                ;
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
+        MyUser userM = new MyUser("user", DigestUtils.sha1Hex("password"), "password");
+        userRepository.save(userM);
+        int count = (int) userRepository.count();
+
         UserDetails user = User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
+                        .username(userRepository.findAll().get(count-1).getUsername())
+                        .password(userRepository.findAll().get(count-1).getPassword())
                         .roles("USER")
                         .build();
 

@@ -21,7 +21,8 @@
         <div class="largest_cont">
             <h1 style="text-align: center" class="mx-auto" >Add New Task</h1>
             <div class="max_cont">
-                <form action="#" method="post" th:action="@{/schedule/new}" th:object="${task}">
+                <td th:text="${valid} ? '' : 'Wrong inputs. Try again.'" />
+                <form action="#" method="post" th:action="@{/schedule/new}" th:object="${taskFormDataDTO}">
                     <table class="table" style="margin-left: 20px; margin-right: 20px">
                         <thread>
                             <tbody>

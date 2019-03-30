@@ -14,6 +14,7 @@ import sk.silvia.projects.iassesment.entity.Task;
 import sk.silvia.projects.iassesment.service.ScheduleService;
 import sk.silvia.projects.iassesment.service.TaskService;
 import sk.silvia.projects.iassesment.service.UserService;
+import sk.silvia.projects.iassesment.service.Validation;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -45,52 +46,6 @@ public class ScheduleController {
         return "schedule";
     }
 
-    @GetMapping("/home")
-    public String homeLoginView() {
-        return "homeLogin";
-    }
-
-    @GetMapping("/hello")
-    public String helloView() {
-        return "hello";
-    }
-
-    @GetMapping("/login")
-    public String loginView() {
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String logInPost(@ModelAttribute MyUser myUser) {
-        /*if (userService.authentificateUser(myUser.getUsername(), myUser.getPassword()))
-            return "home";
-        else
-            return "redirect:/login";*/
-        return "home";
-    }
-
-    @GetMapping("/signup")
-    public String signupView(Model model) {
-        model.addAttribute("user", new MyUser());
-        return "signup";
-    }
-
-    @PostMapping("/signup")
-    public String signupView(Model model, @ModelAttribute MyUser myUser) {
-        userService.registerUser(myUser.getUsername(), myUser.getPassword());
-        return "signup";
-    }
-
-    @GetMapping("/")
-    public String blank() {
-        return "home";
-    }
-
-    @GetMapping("/schedule/home")
-    public String viewHome() {
-        return "home";
-    }
-
     @GetMapping("schedule/data")
     @ResponseBody
     public List<UploadedDTO> uploadData() {
@@ -106,6 +61,8 @@ public class ScheduleController {
     @GetMapping("/schedule/generate")
     public String getSchedule(Model model) {
         model.addAttribute("scheduleFormDTO", new ScheduleFormDTO());
+        boolean valid = true;
+        model.addAttribute("valid", valid);
         return "generateSchedule";
     }
 
@@ -129,16 +86,21 @@ public class ScheduleController {
     @PostMapping("/schedule/generated")
     public String generateSchedule(@ModelAttribute ScheduleFormDTO scheduleFormDTO, Model model) {
 
-        model.addAttribute("scheduleFormDTO", scheduleFormDTO);
+        Validation validate = new Validation();
+        if (!(validate.validateInputInt(scheduleFormDTO.getSessionLength()) && validate.validateInputInt(scheduleFormDTO.getBreakLength()) && validate.validateInputInt(scheduleFormDTO.getBreakFrequency()))) {
+            boolean valid = false;
+            model.addAttribute("valid", valid);
+            return "generateSchedule";
+        }
 
-        int sessionLength = scheduleFormDTO.getSessionLength();
-        int breakLength = scheduleFormDTO.getBreakLength();
-        int breakFrequency = scheduleFormDTO.getBreakFrequency();
+        int sessionLength = Integer.parseInt(scheduleFormDTO.getSessionLength());
+        int breakLength = Integer.parseInt(scheduleFormDTO.getBreakLength());
+        int breakFrequency = Integer.parseInt(scheduleFormDTO.getBreakFrequency());
 
         String categorySelected = scheduleFormDTO.getCategorySelected();
         Assert.isTrue(!StringUtils.isEmpty(categorySelected), "CategorySelected cannot be empty");
 
-        List<Task> display = scheduleService.generateSchedule(sessionLength, breakLength, breakFrequency, categorySelected);
+        List<Task> display = scheduleService.generateSchedule(sessionLength, categorySelected);
         model.addAttribute("displayList", display);
 
         List<UploadedDTO> dataForUpload = scheduleService.getDataForUpload(display, breakFrequency, breakLength);
@@ -151,8 +113,8 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedule/generated")
-    public String displaySchedule(@ModelAttribute List<Task> display, Model model) {
-        model.addAttribute("displayList", display);
+    public String displaySchedule(Model model) {
+        model.addAttribute("scheduleFormDTO", new ScheduleFormDTO());
         return "generateSchedule";
     }
 

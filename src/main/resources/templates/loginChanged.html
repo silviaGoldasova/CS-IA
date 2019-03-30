@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login changed</title>
+</head>
+
+<body style="background-color: white">
+
+<div class = homeHeader th:replace="header :: header"> </div>
+
+<div class="view">
+
+    <div class="largest_cont">
+        <h1 style="text-align: center" class="mx-auto" >Login credentials were successfully changed.</h1>
+    </div>
+
+    <div th:replace="footer :: footer"> </div>
+
+
+    <style>
+
+        table { counter-reset: rowNumber; }
+
+        table tr > td:first-child {
+            counter-increment: rowNumber; }
+
+        table tr td:first-child::before  {
+            content: counter(rowNumber);
+            min-width: 1em;
+            margin-right: 0.5em;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            font-size: 17px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        .alignTable {
+            vertical-align: middle;
+        }
+
+        .largest_cont{
+            margin: 100px auto;
+            width: 75%;
+        }
+
+        .max_cont{
+            margin: 50px auto auto auto;
+            width: 60%;
+        }
+
+        .categoryFont{
+            font-size: larger;
+        }
+
+        .tasksFont{
+            font-size: 4px;
+        }
+        .categories{
+            margin-top: 70px;
+            margin-bottom: 30px;
+
+        }
+
+        .top-nav-collapse {
+            background-color: #ffcc9d !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: floralwhite !important;
+        }
+
+        @media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #ffcc9d !important;
+            }
+        }
+
+    </style>
+
+</div>
+
+</body>
+</html>

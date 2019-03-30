@@ -1,36 +1,33 @@
 package sk.silvia.projects.iassesment.dto;
 
 public class ScheduleFormDTO {
-    private int sessionLength;
-    private int breakLength;
-    private int breakFrequency;
+    private String sessionLength;
+    private String breakLength;
+    private String breakFrequency;
     private String categorySelected;
 
     public ScheduleFormDTO() {
-        sessionLength = 0;
-        breakLength = 0;
-        breakFrequency = 0;
         categorySelected = "Other";
     }
 
-    public int getSessionLength() {
+    public String getSessionLength() {
         return sessionLength;
     }
-    public void setSessionLength(int sessionLength) {
+    public void setSessionLength(String sessionLength) {
         this.sessionLength = sessionLength;
     }
 
-    public int getBreakLength() {
+    public String getBreakLength() {
         return breakLength;
     }
-    public void setBreakLength(int breakLength) {
+    public void setBreakLength(String breakLength) {
         this.breakLength = breakLength;
     }
 
-    public int getBreakFrequency() {
+    public String getBreakFrequency() {
         return breakFrequency;
     }
-    public void setBreakFrequency(int breakFrequency) {
+    public void setBreakFrequency(String breakFrequency) {
         this.breakFrequency = breakFrequency;
     }
 

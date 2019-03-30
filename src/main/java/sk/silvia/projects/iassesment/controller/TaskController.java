@@ -20,15 +20,23 @@ public class TaskController {
 
     @GetMapping("/schedule/new")
     public String newTask(Model model) {
-        model.addAttribute("task", new Task());
+        model.addAttribute("taskFormDataDTO", new TaskFormDataDTO());
+        boolean valid = true;
+        model.addAttribute("valid", valid);
         // return new empty task form
         return "new_task";
     }
 
     @PostMapping("/schedule/new")
-    public String createTask(@ModelAttribute TaskFormDataDTO taskFormDataDTO) {
-        taskService.createTask(taskFormDataDTO.getName(), taskFormDataDTO.getDuration(), taskFormDataDTO.getTaskCategory());
-        return "redirect:/schedule";
+    public String createTask(@ModelAttribute TaskFormDataDTO taskFormDataDTO, Model model) {
+        boolean valid = taskService.createTask(taskFormDataDTO.getName(), taskFormDataDTO.getDuration(), taskFormDataDTO.getTaskCategory());
+        if (valid)
+            return "redirect:/schedule";
+        else {
+            model.addAttribute("valid", valid);
+            return "new_task";
+        }
+
     }
 
     // napr: http://localhost:8080/schedule/25

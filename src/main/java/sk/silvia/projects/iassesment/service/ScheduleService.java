@@ -23,7 +23,7 @@ public class ScheduleService {
     @Autowired
     private TaskService taskService;
 
-    public List<Task> generateSchedule(int sessionLength, int breakLength, int breakFrequency, String categorySelected) {
+    public List<Task> generateSchedule(int sessionLength, String categorySelected) {
         List<Task> selected = taskService.getSelectedTaskList();
         List<Task> list = getCategoryTasks(categorySelected, selected);
         List<Task> display = new LinkedList<Task>();
@@ -40,7 +40,7 @@ public class ScheduleService {
             durationsTotal += task.getDuration();
         }
 
-        if(durationsTotal < sessionLength ){       // if(durationsTotal < schedule.getSessionLength() + (schedule.getSessionLength()/schedule.getBreakFrequency())*schedule.getBreakLength() ){
+        if(durationsTotal < sessionLength ){
             display = list;
         }
         else {
@@ -60,6 +60,7 @@ public class ScheduleService {
                 i++;
             }
         }
+
         return display;
     }
 
@@ -92,10 +93,6 @@ public class ScheduleService {
                 list.add(new UploadedDTO("next:" + display.get(i+1).getName(), switchTime));
             }
             i++;
-        }
-
-        for(int j = 0; j < list.size(); j++) {
-            System.out.println(j + ". " + list.get(j).getName() + "   " + list.get(j).getDuration());
         }
 
         saveUploadDataToRepository(list);
