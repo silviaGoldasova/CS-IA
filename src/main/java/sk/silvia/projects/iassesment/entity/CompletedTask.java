@@ -88,6 +88,4 @@ public class CompletedTask{
         localDateString = localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-
-
 }
