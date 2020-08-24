@@ -1,1 +1,1 @@
-web: java -jar target/SpringMVC.jar
+web: java -jar SpringMVC.jar
