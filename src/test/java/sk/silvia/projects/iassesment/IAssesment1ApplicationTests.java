@@ -55,18 +55,4 @@ public class IAssesment1ApplicationTests {
 				.andExpect(status().isOk());
 	}
 
-	@Test
-	public void accessSecuredResourceUnauthenticatedThenRedirectsToLogin() throws Exception {
-		mockMvc.perform(get("/hello"))
-				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrlPattern("**/login"));
-	}
-
-	@Test
-	@WithMockUser
-	public void accessSecuredResourceAuthenticatedThenOk() throws Exception {
-		mockMvc.perform(get("/hello"))
-				.andExpect(status().isOk());
-	}
-
 }
